@@ -53,51 +53,51 @@ Sub Object 1: Steering Wheel
     Name 4 things you'll find on the:    Steering Wheel
         1) paddle shifters
         2) 'cruise control' controls
-        3) 
-        4) 
+        3) car horn
+        4) phone system controls
     Name 2 things you can do with the:   Steering Wheel
         1) adjust cruise control settings.
-        2)
+        2) sound the car horn
         
 Sub Object 2: Instrument Cluster
     Name 4 things you'll find on the:   Instrument Cluster
-        1)
-        2)
-        3)
-        4)
+        1) odometer
+        2) speedometer
+        3) temperature gauge
+        4) indicator status lights
     Name 3 things you can do with the:   Instrument Cluster
-        1)
-        2)
-        3)
+        1) read the speed the car is travelling
+        2) check whether the indictator lights are blinking and which side
+        3) read the external environment temperature
     
 Sub Object 3: Environment Controls
     Name 3 things you'll find on the:    Environment Controls
-        1)
-        2)
-        3)
+        1) internal envirnoment temperature controls 
+        2) heater/ac fan speed control
+        3) ac on/off toggle button
     Name 3 things you can do with the:   Environment Controls
-        1)
-        2)
-        3)
+        1) adjust the internal envirnoment temperature
+        2) adjust the speed of the fans
+        3) toggle the ac on/off
 
 Sub Object 4: Infotainment System
     Name 3 things you'll find on the:    Infotainment System
-        1)
-        2)
-        3)
+        1) Infotainment System on/off toggle button
+        2) Volume knob
+        3) CD edject button
     Name 3 things you can do with the:   Infotainment System
-        1)
-        2)
-        3)
+        1) Play a audio CD
+        2) Place a phone call
+        3) Listen to the radio
 
 Sub Object 5: Seat 
     Name 3 things you'll find on the:    Seat
-        1)
-        2)
-        3)
+        1) seat belt buckle
+        2) seat mounted airbag
+        3) seat postion controls
     Name 2 things you can do with the:   Seat
-        1)
-        2)
+        1) recline the seat
+        2) heat your butt
 */
 
 /*
@@ -153,59 +153,59 @@ Part 1b Assignment:
 */
 
 /*
-Thing 1)
+Thing 1) Coffee Shop
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of chairs
+    2) number of staff
+    3) number of toilets
+    4) annual profit
+    5) price of coffee
 3 things it can do:
-    1)
-    2)
-    3)
+    1) host local artists work on walls
+    2) charge customer
+    3) train staff
  */
 
 /*
-Thing 2)
+Thing 2) School
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of classrooms
+    2) position in leauge table
+    3) number of teachers
+    4) number of pupils
+    5) student average grade
 3 things it can do:
-    1)
-    2)
-    3)
+    1) train teachers
+    2) students christmas play
+    3) close for holidays
  */
 
 /*
-Thing 3)
+Thing 3) farm
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of sheep
+    2) number of cows
+    3) crop yeild
+    4) number of farmers
+    5) area in hectare
 3 things it can do:
-    1)
-    2)
-    3)
+    1) sell sheep
+    2) harvest crop
+    3) construct new barn
  */
 
 /*
-Thing 4)
+Thing 4) commerical aeroplane
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of engines
+    2) top speed
+    3) number of seats
+    4) fuel tank capacity
+    5) flight range
 3 things it can do:
-    1)
-    2)
-    3)
+    1) take off
+    2) emergency landing
+    3) inflight entertainment
  */
 
  /*
@@ -275,17 +275,17 @@ Part 1c assignment:
 */
 
 /*
-Thing 10)
+    Thing 10) Sports Team
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Player
+    2) Coach
+    3) Fan
+    4) Medic
+    5) Stadium
 3 things it can do:
-    1)
-    2)
-    3)
+    1) play home game
+    2) play away game
+    3) win championship
  */
 
 /*
@@ -375,73 +375,73 @@ each property for UDTs 5 - 9.
 */
 
 /*
-Thing 5)
+Thing 5) Player
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) body weight (float)
+    2) sponsor (std:string)
+    3) number of games played (int)
+    4) scoring average (float)
+    5) name (std::string)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) run
+    2) score
+    3) train
  */
 
 /*
-Thing 6)
+Thing 6) Coach
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) name (std::string)
+    2) years experience (int)
+    3) trophies won (int)
+    4) salary (double)
+    5) inspiring (bool)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) give motivational speech
+    2) lose job
+    3) give press conference
  */
 
 /*
-Thing 7)
+Thing 7) Fan
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) name (std::string)
+    2) age (int)
+    3) season ticket holder (bool)
+    4) distance from stadium (double)
+    5) fan club member (bool)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) buy ticket to game
+    2) cheer
+    3) wear team colours
  */
 
 /*
-Thing 8)
+Thing 8) Medic
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) qualifications (std::string)
+    2) name (std::string)
+    3) salary (double)
+    4) explayer (bool)
+    5) IT skills (bool)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) give steriod injection
+    2) massage treatment
+    3) make fitness assessment
  */
 
 /*
-Thing 9)
+Thing 9) Stadium
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of seats (int)
+    2) pitch area (float)
+    3) toilets (int)
+    4) training pitch (bool)
+    5) construction cost (double)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) host home game
+    2) covid vaccination centre
+    3) require maintance
  */
 
 /*
