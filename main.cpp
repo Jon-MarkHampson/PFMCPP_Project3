@@ -150,62 +150,9 @@ Part 1b Assignment:
         primitives.
         c) pick properties that can eventually be represented with 
         'int float double bool char std::string'.
-*/
 
-/*
-Thing 1) Coffee Shop
-5 properties:
-    1) number of chairs
-    2) number of staff
-    3) number of toilets
-    4) annual profit
-    5) price of coffee
-3 things it can do:
-    1) host local artists work on walls
-    2) charge customer
-    3) train staff
- */
 
-/*
-Thing 2) School
-5 properties:
-    1) number of classrooms
-    2) position in leauge table
-    3) number of teachers
-    4) number of pupils
-    5) student average grade
-3 things it can do:
-    1) train teachers
-    2) students christmas play
-    3) close for holidays
- */
 
-/*
-Thing 3) Farm
-5 properties:
-    1) number of sheep
-    2) number of cows
-    3) crop yeild
-    4) number of farmers
-    5) area in hectare
-3 things it can do:
-    1) sell sheep
-    2) harvest crop
-    3) construct new barn
- */
-
-/*
-Thing 4) Commerical Aeroplane
-5 properties:
-    1) number of engines
-    2) top speed
-    3) number of seats
-    4) fuel tank capacity
-    5) flight range
-3 things it can do:
-    1) take off
-    2) emergency landing
-    3) inflight entertainment
  */
 
  /*
@@ -272,23 +219,9 @@ Part 1c assignment:
             Brightness (double)
             area in cm2 (int)
             brand (std::string)
-*/
 
-/*
-    Thing 10) Sports Team
-5 properties:
-    1) player
-    2) coach
-    3) fan
-    4) medic
-    5) stadium
-3 things it can do:
-    1) play home game
-    2) play away game
-    3) win championship
- */
 
-/*
+
 Part 1d
 You now know how to define a UDT that is composed of other UDT.
 Now you will learn how to break down those sub-object UDTs into 
@@ -372,79 +305,7 @@ each property for UDTs 5 - 9.
             Brightness (double)
             width in cm (int)
             height in cm (int)
-*/
 
-/*
-Thing 5) Player
-5 properties:
-    1) body weight (float)
-    2) sponsor (std:string)
-    3) number of games played (int)
-    4) scoring average (float)
-    5) name (std::string)
-3 things it can do:
-    1) run
-    2) score
-    3) train
- */
-
-/*
-Thing 6) Coach
-5 properties:
-    1) name (std::string)
-    2) years experience (int)
-    3) trophies won (int)
-    4) salary (double)
-    5) inspiring (bool)
-3 things it can do:
-    1) give motivational speech
-    2) lose job
-    3) give press conference
- */
-
-/*
-Thing 7) Fan
-5 properties:
-    1) name (std::string)
-    2) age (int)
-    3) season ticket holder (bool)
-    4) distance from stadium (double)
-    5) fan club member (bool)
-3 things it can do:
-    1) buy ticket to game
-    2) cheer
-    3) wear team colours
- */
-
-/*
-Thing 8) Medic
-5 properties:
-    1) qualifications (std::string)
-    2) name (std::string)
-    3) salary (double)
-    4) explayer (bool)
-    5) IT skills (bool)
-3 things it can do:
-    1) give steriod injection
-    2) massage treatment
-    3) make fitness assessment
- */
-
-/*
-Thing 9) Stadium
-5 properties:
-    1) number of seats (int)
-    2) pitch area (float)
-    3) toilets (int)
-    4) training pitch (bool)
-    5) construction cost (double)
-3 things it can do:
-    1) host home game
-    2) covid vaccination centre
-    3) require maintance
- */
-
-/*
 You've just defined 10 UDTs!
 4 of them are unrelated (UDTs 1-4).
 5 of them form the sub-objects that make up the 10th UDT. 
@@ -470,6 +331,128 @@ Send me a DM to review your pull request when the project is ready for review.
 
  Wait for my code review.
  */
+/*
+Thing 1) Coffee Shop
+5 properties:
+    1) number of chairs
+    2) number of staff
+    3) number of toilets
+    4) annual profit
+    5) price of coffee
+3 things it can do:
+    1) host local artists work on walls
+    2) charge customer
+    3) train staff
+
+Thing 2) School
+5 properties:
+    1) number of classrooms
+    2) position in leauge table
+    3) number of teachers
+    4) number of pupils
+    5) student average grade
+3 things it can do:
+    1) train teachers
+    2) students christmas play
+    3) close for holidays
+
+Thing 3) Farm
+5 properties:
+    1) number of sheep
+    2) number of cows
+    3) crop yeild
+    4) number of farmers
+    5) area in hectare
+3 things it can do:
+    1) sell sheep
+    2) harvest crop
+    3) construct new barn
+
+Thing 4) Commerical Aeroplane
+5 properties:
+    1) number of engines
+    2) top speed
+    3) number of seats
+    4) fuel tank capacity
+    5) flight range
+3 things it can do:
+    1) take off
+    2) emergency landing
+    3) inflight entertainment
+
+Thing 5) Sports Team
+5 properties:
+    1) player
+    2) coach
+    3) fan
+    4) medic
+    5) stadium
+3 things it can do:
+    1) play home game
+    2) play away game
+    3) win championship
+
+
+Thing 6) Player
+5 properties:
+    1) body weight (float)
+    2) sponsor (std:string)
+    3) number of games played (int)
+    4) scoring average (float)
+    5) name (std::string)
+3 things it can do:
+    1) run
+    2) score
+    3) train
+
+Thing 7) Coach
+5 properties:
+    1) name (std::string)
+    2) years experience (int)
+    3) trophies won (int)
+    4) salary (double)
+    5) inspiring (bool)
+3 things it can do:
+    1) give motivational speech
+    2) lose job
+    3) give press conference
+
+Thing 8) Fan
+5 properties:
+    1) name (std::string)
+    2) age (int)
+    3) season ticket holder (bool)
+    4) distance from stadium (double)
+    5) fan club member (bool)
+3 things it can do:
+    1) buy ticket to game
+    2) cheer
+    3) wear team colours
+
+Thing 9) Medic
+5 properties:
+    1) qualifications (std::string)
+    2) name (std::string)
+    3) salary (double)
+    4) explayer (bool)
+    5) IT skills (bool)
+3 things it can do:
+    1) give steriod injection
+    2) massage treatment
+    3) make fitness assessment
+
+Thing 10) Stadium
+5 properties:
+    1) number of seats (int)
+    2) pitch area (float)
+    3) toilets (int)
+    4) training pitch (bool)
+    5) construction cost (double)
+3 things it can do:
+    1) host home game
+    2) covid vaccination centre
+    3) require maintance
+*/
 
 #include <iostream>
 int main()
