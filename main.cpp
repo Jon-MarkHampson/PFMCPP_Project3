@@ -181,7 +181,7 @@ Thing 2) School
  */
 
 /*
-Thing 3) farm
+Thing 3) Farm
 5 properties:
     1) number of sheep
     2) number of cows
@@ -195,7 +195,7 @@ Thing 3) farm
  */
 
 /*
-Thing 4) commerical aeroplane
+Thing 4) Commerical Aeroplane
 5 properties:
     1) number of engines
     2) top speed
@@ -277,11 +277,11 @@ Part 1c assignment:
 /*
     Thing 10) Sports Team
 5 properties:
-    1) Player
-    2) Coach
-    3) Fan
-    4) Medic
-    5) Stadium
+    1) player
+    2) coach
+    3) fan
+    4) medic
+    5) stadium
 3 things it can do:
     1) play home game
     2) play away game
