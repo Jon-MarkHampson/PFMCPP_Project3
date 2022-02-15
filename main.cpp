@@ -334,11 +334,11 @@ Send me a DM to review your pull request when the project is ready for review.
 /*
 Thing 1) Coffee Shop
 5 properties:
-    1) number of chairs
-    2) number of staff
-    3) number of toilets
-    4) annual profit
-    5) price of coffee
+    1) number of chairs (int)
+    2) number of staff (int)
+    3) number of toilets (int)
+    4) annual profit (double)
+    5) price of coffee (float)
 3 things it can do:
     1) host local artists work on walls
     2) charge customer
@@ -346,11 +346,11 @@ Thing 1) Coffee Shop
 
 Thing 2) School
 5 properties:
-    1) number of classrooms
-    2) position in leauge table
-    3) number of teachers
-    4) number of pupils
-    5) student average grade
+    1) number of classrooms (int)
+    2) position in leauge table (int)
+    3) number of teachers (int)
+    4) number of pupils (int)
+    5) student average grade (float)
 3 things it can do:
     1) train teachers
     2) students christmas play
@@ -358,11 +358,11 @@ Thing 2) School
 
 Thing 3) Farm
 5 properties:
-    1) number of sheep
-    2) number of cows
-    3) crop yeild
-    4) number of farmers
-    5) area in hectare
+    1) number of sheep (int)
+    2) number of cows (int)
+    3) crop yeild (double)
+    4) number of farmers (int)
+    5) area in hectare (double)
 3 things it can do:
     1) sell sheep
     2) harvest crop
@@ -370,11 +370,11 @@ Thing 3) Farm
 
 Thing 4) Commerical Aeroplane
 5 properties:
-    1) number of engines
-    2) top speed
-    3) number of seats
-    4) fuel tank capacity
-    5) flight range
+    1) number of engines (int)
+    2) top speed (double)
+    3) number of seats (int)
+    4) fuel tank capacity (double)
+    5) flight range (double)
 3 things it can do:
     1) take off
     2) emergency landing
