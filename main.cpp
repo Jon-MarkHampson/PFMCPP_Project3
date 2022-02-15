@@ -380,20 +380,7 @@ Thing 4) Commerical Aeroplane
     2) emergency landing
     3) inflight entertainment
 
-Thing 5) Sports Team
-5 properties:
-    1) player
-    2) coach
-    3) fan
-    4) medic
-    5) stadium
-3 things it can do:
-    1) play home game
-    2) play away game
-    3) win championship
-
-
-Thing 6) Player
+Thing 5 ) Player
 5 properties:
     1) body weight (float)
     2) sponsor (std:string)
@@ -405,7 +392,7 @@ Thing 6) Player
     2) score
     3) train
 
-Thing 7) Coach
+Thing 6) Coach
 5 properties:
     1) name (std::string)
     2) years experience (int)
@@ -417,7 +404,7 @@ Thing 7) Coach
     2) lose job
     3) give press conference
 
-Thing 8) Fan
+Thing 7) Fan
 5 properties:
     1) name (std::string)
     2) age (int)
@@ -429,7 +416,7 @@ Thing 8) Fan
     2) cheer
     3) wear team colours
 
-Thing 9) Medic
+Thing 8) Medic
 5 properties:
     1) qualifications (std::string)
     2) name (std::string)
@@ -441,7 +428,7 @@ Thing 9) Medic
     2) massage treatment
     3) make fitness assessment
 
-Thing 10) Stadium
+Thing 9) Stadium
 5 properties:
     1) number of seats (int)
     2) pitch area (float)
@@ -452,6 +439,18 @@ Thing 10) Stadium
     1) host home game
     2) covid vaccination centre
     3) require maintance
+
+Thing 10) Sports Team
+5 properties:
+    1) player
+    2) coach
+    3) fan
+    4) medic
+    5) stadium
+3 things it can do:
+    1) play home game
+    2) play away game
+    3) win championship
 */
 
 #include <iostream>
