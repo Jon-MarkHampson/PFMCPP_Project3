@@ -245,7 +245,7 @@ Thing 2) School
     5) student average grade (float)
 3 things it can do:
     1) train teachers
-    2) students christmas play
+    2) produce students christmas play
     3) close for holidays
 */
 
@@ -264,8 +264,8 @@ struct School
 
     //train teachers
     void trainTeachers(bool internalTraining, std::string trainingRequired);
-    //students christmas play
-    void studentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays);
+    //produce students christmas play
+    void produceStudentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays);
     //close for holidays
     void closeForHolidays(int howManyDaysClosed, std::string nameOfHoliday);
 };
