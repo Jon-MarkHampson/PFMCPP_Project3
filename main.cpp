@@ -225,17 +225,14 @@ struct CoffeeShop
         void makeDeliveries();
         void takeHoliday();
         bool deservesPromotion(); // returns whether the employee is derving of a promotion
-
-
-
     };
 
     //host local artists work on walls
-    float getArtExhibitCommision(float percenatgeCommisionAgreed, float totalArtSales, CoffeeShop coffeeshop); //returns the total value of commission earn from the sale of all the art at this instance of CoffeeShop 
+    float hostLocalArtistOnWalls(float percenatgeCommisionAgreed, float totalArtSales, CoffeeShop coffeeshop); //returns the total value of commission earn from the sale of all the art at this instance of CoffeeShop 
     //charge customer
-    float getCustomerSale(float priceCoffee, int numberOfCoffees, int customerNumber); //returns the total value of the sale of all good for this customer
+    float chargeCustomer(float priceCoffee, int numberOfCoffees, int customerNumber); //returns the total value of the sale of all good for this customer
     //train staff
-    void staffTraining(Employee employee, std::string trainingRequired);
+    void trainStaff(Employee employee, std::string trainingRequired);
 };
 
 /*
@@ -266,11 +263,11 @@ struct School
     float aveGrade = 3.45f;
 
     //train teachers
-    void teacherTraining(bool internalTraining, std::string trainingRequired);
+    void trainTeachers(bool internalTraining, std::string trainingRequired);
     //students christmas play
-    void christmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays);
+    void studentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays);
     //close for holidays
-    void holidayClosure(int howManyDaysClosed, std::string nameOfHoliday);
+    void closeForHolidays(int howManyDaysClosed, std::string nameOfHoliday);
 };
 
 /*
@@ -301,7 +298,7 @@ struct Farm
     double farmLandAreaInHectare = 84.3;
 
     //sell sheep
-    float getTurnoverSheepSale(float priceOfSheep, int numSheep); //returns the income from the sale of this farms sheep
+    float sellSheep(float priceOfSheep, int numSheep); //returns the income from the sale of this farms sheep
     //harvest crop
     void harvestCrop(bool isCropMature, int numFarmHands, bool machinesFueled);
     //construct new barn
@@ -348,13 +345,12 @@ struct CommericalAeroplane
         void autopilotDisengagement(bool pilotAndCopilotChecklistComplete);
     };
 
-
-    //take off
-    bool takeOffComplete(float groundSpeed, bool landingGear, bool armDoorsAndCrossCheck); //returns whether has this instance of Commercial Areoplane completed a successful take off
-    //emergency landing
-    void emergencyLanding(bool enginefailure, float urrentAirSpeed);
-    //inflight entertainment
-    void inflightEntertainment(int passengerSeatNumber, std::string movieSelction);
+    //accelerate for take off
+    bool accelerateForTakeOff(float groundSpeed, bool landingGear, bool armDoorsAndCrossCheck, bool runWayClear, bool airspaceClear); //returns whether has this instance of Commercial Areoplane can go for takeoff
+    //transportPeople
+    void transportPeople(int totalPassengers, int totalCrew);
+    //provide inflight entertainment
+    void provideInflightEntertainment(int passengerSeatNumber, std::string mediaSelction);  
 };
 
 /*
@@ -385,7 +381,7 @@ struct Player
     std::string name = "Ronaldo";
 
     //run
-    float getDistanceRun(int howFast, float howFar, bool startWithLeftFoot);
+    float run(int howFast, float howFar, bool startWithLeftFoot);
     //score
     void score(bool hasBall, bool inScoringPosition);
     //train
@@ -422,7 +418,7 @@ struct Coach
     //give motivational speech
     void deliverMotivationalSpeech(bool winningStreak);
     //lose job
-    void getSacked(int numberOfGamesInLosingStreak);
+    void loseJob(int numberOfGamesInLosingStreak);
     //give press conference
     void givePressConference(bool wonGame);
 };
@@ -455,7 +451,7 @@ struct Fan
     bool fanclubMember = true;
 
     //buy ticket to game
-    void purchseTicket(float ticketPrice, std::string opponentTeam);
+    void butTicketToGame(float ticketPrice, std::string opponentTeam);
     //cheer
     void cheer(bool teamScoredGoal);
     //wear team colours
@@ -493,8 +489,8 @@ struct Medic
     void giveSteriodInjection(Player player, std::string bodyPart, bool servePain);
     //massage treatment
     void giveMassageTreatment(Player player, std::string therapyTargetArea);
-    //make fitness assessment
-    float getFitnessAssessmentScore(int restingBPM, int maxBPM, float bloodPressure); //returns value of a players fitness assessment
+    //provide fitness assessment
+    float provideFitnessAssessmentScore(int restingBPM, int maxBPM, float bloodPressure); //returns value of a players fitness assessment
 };
 
 /*
@@ -525,9 +521,9 @@ struct Stadium
     double constructionCost = 1200500700.99;
 
     //host home game
-    void homeGame(std::string nameVistingTeam);
-    //covid vaccination centre
-    bool covidVaccinationCentre(int numberOfUnvaccinated, float RNumber); //returns wheteher stadium is required to be vaccination centre
+    void hostHomeGame(std::string nameVistingTeam);
+    //provide covid vaccination centre
+    bool provideCovidVaccinationCentre(int numberOfUnvaccinated, float RNumber); //returns wheteher stadium is required to be vaccination centre
     //require maintance
     void maintance(bool brokenToilet);
 };
@@ -545,26 +541,17 @@ Thing 10) Sports Team
     2) play away game
     3) win championship
 */
-struct TeamCaptain //to prevent compile errors
-{
-    std::string name = "David Davison";
-};
-struct NumberOneFan //to prevent compile errors
-{
-    std::string name = "William Williamson";
-};
-
 
 struct SportsTeam
 {
     //player
-    Player player;
+    Player TeamCaptain;
     //coach
     Coach coach;
     //fan
-    NumberOneFan numberOneFan;
+    Fan numberOneFan;
     //medic
-    TeamCaptain TeamCaptain;
+    Medic bestMedic;
     //stadium
     Stadium stadium;
 
