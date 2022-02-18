@@ -270,7 +270,7 @@ void School::trainTeachers(bool internalTraining, std::string trainingRequired)
     if (internalTraining)
     {
         std::cout << "Teachers trained on " << trainingRequired << std::endl;
-        leagueTablePosition -= 1;
+        --leagueTablePosition;
     }
     
 }
