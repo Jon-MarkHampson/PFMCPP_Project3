@@ -199,7 +199,7 @@ void CoffeeShop::Employee::makeDeliveries(float distTravelled, int numCustomers)
 void CoffeeShop::Employee::takeHoliday(int startDate, int endDate)
 {
     int numDaysHolidayTaken = endDate - startDate;
-    std::cout << "Days holiday taken by " << firstName << " " << lastName << numDaysHolidayTaken;
+    std::cout << "Days holiday taken by " << firstName << " " << lastName << numDaysHolidayTaken << std::endl;
 }
 bool CoffeeShop::Employee::deservesPromotion()
 {
@@ -213,20 +213,20 @@ bool CoffeeShop::Employee::deservesPromotion()
 float CoffeeShop::hostLocalArtistOnWalls(float percenatgeCommissionAgreed, float totalArtSales, std::string name)
 {
     float commissionTotal = percenatgeCommissionAgreed * totalArtSales;
-    std::cout << name << "commission total: " << commissionTotal; 
+    std::cout << name << "commission total: " << commissionTotal << std::endl; 
     return commissionTotal;
 }
 
 float CoffeeShop::chargeCustomer(int numberOfCoffees, std::string customerName)
 {
     float saleTotal = priceCoffee * numberOfCoffees;
-    std::cout << customerName << "paid" << saleTotal;
+    std::cout << customerName << "paid" << saleTotal << std::endl;
     return saleTotal;
 }
 
 void CoffeeShop::trainStaff(Employee employee, std::string trainingRequired)
 {
-    std::cout << employee.firstName << " " << employee.lastName << "has been trained on " << trainingRequired;
+    std::cout << employee.firstName << " " << employee.lastName << "has been trained on " << trainingRequired << std::endl;
     employee.fullyTrained = true;
 }
 
@@ -246,13 +246,13 @@ struct School
 void School::trainTeachers(bool internalTraining, std::string trainingRequired)
 {
     if (internalTraining)
-    std::cout << "Teachers trained on " << trainingRequired;
+    std::cout << "Teachers trained on " << trainingRequired << std::endl;
     leagueTablePosition -= 1;
 }
 
 void School::produceStudentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays)
 {
-    std::cout << "This years production of " << nameOfPlay << " was performed by " << numberOfStudentsInCast << ", it took " << rehearsalDays << "to perfect.";
+    std::cout << "This years production of " << nameOfPlay << " was performed by " << numberOfStudentsInCast << ", it took " << rehearsalDays << "to perfect." << std::endl;
 }
 
 struct Farm
@@ -338,7 +338,7 @@ bool CommercialAeroplane::Cockpit::autopilotDisengagement(bool pilotAndCopilotCh
 void CommercialAeroplane::accelerateForTakeOff(float groundSpeed, bool armDoorsAndCrossCheck, bool runWayClear, bool airspaceClear)
 {
     if (runWayClear && armDoorsAndCrossCheck && airspaceClear)
-    std::cout << "Clear for take off";
+    std::cout << "Clear for take off" << std::endl;
 
     if (groundSpeed > speedRequiredForTakeOff)
     landingGearDown = false;
@@ -346,11 +346,11 @@ void CommercialAeroplane::accelerateForTakeOff(float groundSpeed, bool armDoorsA
 
 void CommercialAeroplane::transportPeople(int totalPassengers, int totalCrew)
 {
-    std::cout << "Total number on board: " << totalPassengers + totalCrew;
+    std::cout << "Total number on board: " << totalPassengers + totalCrew << std::endl;
 }
 void CommercialAeroplane::provideInflightEntertainment(int passengerSeatNumber, std::string mediaSelction)
 {
-    std::cout << "Passenger " << passengerSeatNumber << " selected " << mediaSelction;
+    std::cout << "Passenger " << passengerSeatNumber << " selected " << mediaSelction << std::endl;
 }
 
 struct Player
@@ -365,8 +365,29 @@ struct Player
     void score(bool hasBall, bool inScoringPosition);
     void train(std::string trainingRequired, float fitnessScore);
 };
+float Player::run(int howFast, float howFar, bool startWithLeftFoot)
+{
+    float speed = 0;
+    float energyUsed = 0;
 
+    if (startWithLeftFoot)
+    speed = howFar / howFast;
+    energyUsed = speed * bodyMassKG;
 
+    return energyUsed;
+}
+
+void Player::score(bool hasBall, bool inScoringPosition)
+{
+    if (hasBall && inScoringPosition)
+    std::cout << "Goal scored" << std::endl;
+}
+
+void Player::train(std::string trainingRequired, float fitnessScore)
+{
+    std::cout << name << " completed " << trainingRequired << std::endl;
+    fitnessScore += 1;
+}
 
 struct Coach
 {
@@ -381,6 +402,23 @@ struct Coach
     void givePressConference(bool wonGame);
 };
 
+void deliverMotivationalSpeech(bool winningStreak)
+{
+    if (winningStreak == false)
+    std::cout << "No one will deny me, no one will define me. And no one will tell me who and what I am and can be. Belief will change my world.";
+}
+
+void Coach::loseJob(int numberOfGamesInLosingStreak)
+{
+    if (numberOfGamesInLosingStreak > 6)
+    std::cout << "You're Fired" << std::endl;
+}
+void givePressConference(bool wonGame)
+{
+    if (wonGame)
+    std::cout << "It's a game of two halves, and we were the better team in both of them" << std::endl;
+}
+
 struct Fan
 {
     std::string name = "John Johnson";
@@ -389,10 +427,29 @@ struct Fan
     double distanceFromStadiumInKM = 345.78;
     bool fanclubMember = true;
 
-    void butTicketToGame(float ticketPrice, std::string opponentTeam);
+    void buyTicketToGame(float ticketPrice, std::string opponentTeam);
     void cheer(bool teamScoredGoal);
     void wearTeamColours(bool teamWinningStreak);
 };
+
+void Fan::buyTicketToGame(float ticketPrice, std::string opponentTeam)
+{
+    std::cout << name << "purchased ticket to " << opponentTeam << ". Price: £" << ticketPrice << std::endl;
+}
+
+void Fan::cheer(bool teamScoredGoal)
+{
+    if (teamScoredGoal)
+    std::cout << "Wooohooo, goal!";
+}
+
+void Fan::wearTeamColours(bool teamWinningStreak)
+{
+    if (teamWinningStreak)
+    fanclubMember = true;
+    hasSeasonTicket = true;
+    std::cout << name << "purchased a team shirt" << std::endl;
+}
 
 struct Medic
 {
@@ -402,10 +459,50 @@ struct Medic
     bool isExPlayer = true;
     bool hasITSkills = true;
 
-    void giveSteriodInjection(Player player, std::string bodyPart, bool servePain);
-    void giveMassageTreatment(Player player, std::string therapyTargetArea);
-    float provideFitnessAssessmentScore(int restingBPM, int maxBPM, float bloodPressure);
+    void giveSteriodInjection(std::string player, std::string bodyPart, bool servePain);
+    void giveMassageTreatment(std::string player, std::string therapyTargetArea);
+    float provideFitnessAssessmentScore(int restingBPM, int maxBPM, int bloodPressure);
 };
+void Medic::giveSteriodInjection(std::string player, std::string bodyPart, bool severePain)
+{
+    if (severePain)
+    std::cout << player << "received steriod injection to " << bodyPart << std::endl;
+}
+
+void Medic::giveMassageTreatment(std::string player, std::string therapyTargetArea)
+{
+    std::cout << player << " received massage treatment to " << therapyTargetArea << std::endl;
+}
+
+float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int bloodPressure)
+{
+    int scoreRestingBPM = 0;
+    int scoreMaxBPM = 0;
+    int scoreBloodPressure = 0;
+
+    if (50 < restingBPM && restingBPM < 100)
+    scoreRestingBPM = 1;
+    if (100 <= restingBPM && restingBPM < 120)
+    scoreRestingBPM = 2;
+    else
+    scoreRestingBPM = 3;
+    
+    if (150 < maxBPM && maxBPM < 190)
+    scoreMaxBPM = 1;
+    if (190 <= maxBPM && maxBPM < 210)
+    scoreMaxBPM = 2;
+    else
+    scoreMaxBPM = 3;
+
+    if (90 < bloodPressure && bloodPressure < 120)
+    scoreBloodPressure = 1;
+    if (120 <= bloodPressure && bloodPressure < 160)
+    scoreBloodPressure = 2;
+    else
+    scoreBloodPressure = 3;
+
+    return scoreRestingBPM + scoreMaxBPM + scoreBloodPressure;
+}
 
 struct Stadium
 {
@@ -415,10 +512,30 @@ struct Stadium
     bool trainingPitch = true;
     double constructionCost = 1200500700.99;
 
-    void hostHomeGame(std::string nameVistingTeam);
+    void hostHomeGame(std::string nameVisitingTeam);
     bool provideCovidVaccinationCentre(int numberOfUnvaccinated, float RNumber);
     void maintance(bool brokenToilet);
 };
+
+void Stadium::hostHomeGame(std::string nameVisitingTeam)
+{
+    std::cout << "Welcome " << nameVisitingTeam << std::endl;
+}
+
+bool Stadium::provideCovidVaccinationCentre(int numberOfUnvaccinated, float RNumber)
+{
+    if (numberOfUnvaccinated > 10000 && RNumber > 1.5f)
+    {
+    return true; 
+    }
+    return false;
+}
+
+void Stadium::maintance(bool brokenToilet)
+{
+    if (brokenToilet)
+    std::cout << "Call maintainance to toilet" << std::endl;
+}
 
 struct SportsTeam
 {
@@ -432,6 +549,37 @@ struct SportsTeam
     bool winAwayGame(int goalsScoredFor, int goalsScoredAgainst);
     bool winChampionship(int gamesPlayed, int gamesWon, int gamesLost, int gamesDrawn, int totalGoalsScoredFor, int totalGoalsScoredAgainst);
 };
+
+bool SportsTeam::winHomeGame(int goalsScoredFor, int goalsScoredAgainst)
+{
+    if (goalsScoredFor > goalsScoredAgainst)
+    {
+    std::cout << "We win home game" << std::endl;
+    return true;
+    }
+    return false;
+}
+
+bool SportsTeam::winAwayGame(int goalsScoredFor, int goalsScoredAgainst)
+{
+    if (goalsScoredFor > goalsScoredAgainst)
+    {
+    std::cout << "We win away game" << std::endl;
+    return true;
+    }
+    return false;
+}
+
+bool SportsTeam::winChampionship(int gamesPlayed, int gamesWon, int gamesLost, int gamesDrawn, int totalGoalsScoredFor, int totalGoalsScoredAgainst)
+{
+    if (gamesPlayed >= 38)
+        if (gamesWon > gamesLost && gamesDrawn < 19 && totalGoalsScoredFor > totalGoalsScoredAgainst)
+        {
+        std::cout << "We won the championship" << std::endl;
+        return true;
+        }
+        return false;
+}
 
 #include <iostream>
 int main()
