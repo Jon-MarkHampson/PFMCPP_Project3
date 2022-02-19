@@ -122,15 +122,9 @@ struct Person
         int numSteps = 0;
         float footLengthInCM = 23.5f;
         float normalStepLengthInCM = 43.7f;
-       // float speedAdjustedSteplength;
 
         void stepForward();
-        float stepSize();//(float stepSpeedMultiplicationFactor)
-        //{
-            //speedAdjustedSteplength = normalStepLengthInCM * stepSpeedMultiplicationFactor;
-
-            //return speedAdjustedSteplength;
-        //}
+        float stepSize(); 
     }; 
 
     Foot leftFoot;
@@ -226,10 +220,7 @@ bool CoffeeShop::Employee::deservesPromotion()
         fullyTrained = true;
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 float CoffeeShop::hostLocalArtistOnWalls(float percenatgeCommissionAgreed, float totalArtSales, std::string name)
@@ -418,8 +409,8 @@ float Player::run(int howFast, float howFar, bool startWithLeftFoot)
 
     if (startWithLeftFoot)
     {
-    speed = howFar / howFast;
-    energyUsed = speed * bodyMassKG;
+        speed = howFar / howFast;
+        energyUsed = speed * bodyMassKG;
     }
     return energyUsed;
 }
@@ -548,7 +539,7 @@ float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int blood
     {
         scoreRestingBPM = 1;
     }
-    if (100 <= restingBPM && restingBPM < 120)
+    else if (100 <= restingBPM && restingBPM < 120)
     {
         scoreRestingBPM = 2;
     }
@@ -561,7 +552,7 @@ float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int blood
     {
         scoreMaxBPM = 1;
     }
-    if (190 <= maxBPM && maxBPM < 210)
+    else if (190 <= maxBPM && maxBPM < 210)
     {
         scoreMaxBPM = 2;
     }
@@ -574,7 +565,7 @@ float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int blood
     {
         scoreBloodPressure = 1;
     }
-    if (120 <= bloodPressure && bloodPressure < 160)
+    else if (120 <= bloodPressure && bloodPressure < 160)
     {
         scoreBloodPressure = 2;
     }
@@ -657,12 +648,14 @@ bool SportsTeam::winAwayGame(int goalsScoredFor, int goalsScoredAgainst)
 bool SportsTeam::winChampionship(int gamesPlayed, int gamesWon, int gamesLost, int gamesDrawn, int totalGoalsScoredFor, int totalGoalsScoredAgainst)
 {
     if (gamesPlayed >= 38)
+    {
         if (gamesWon > gamesLost && gamesDrawn < 19 && totalGoalsScoredFor > totalGoalsScoredAgainst)
-        {
-            std::cout << "We won the championship" << std::endl;
-            return true;
-        }
-        return false;
+            {
+                std::cout << "We won the championship" << std::endl;
+                return true;
+            }
+    }    
+    return false;
 }
 
 #include <iostream>
