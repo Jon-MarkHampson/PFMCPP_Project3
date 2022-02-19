@@ -201,6 +201,7 @@ struct CoffeeShop
     float chargeCustomer(int numberOfCoffees, std::string customerName);
     void trainStaff(Employee employee, std::string trainingRequired);
 };
+
 void CoffeeShop::Employee::makeDeliveries(float distTravelled, int numCustomers)
 {
     float aveDistancePerCustomer = distTravelled / numCustomers;
@@ -212,12 +213,12 @@ void CoffeeShop::Employee::takeHoliday(int startDate, int endDate)
     int numDaysHolidayTaken = endDate - startDate;
     std::cout << "Days holiday taken by " << firstName << " " << lastName << numDaysHolidayTaken << std::endl;
 }
+
 bool CoffeeShop::Employee::deservesPromotion()
 {
     if (fullyTrained)
     {
         salary += 1000;
-        fullyTrained = true;
         return true;
     }
     return false;
@@ -284,6 +285,7 @@ struct Farm
     double harvestCrop(bool isCropMature, int numFarmHands, bool machinesFueled, double priceOfCrop);
     void constructNewBarn(bool needNewBarn, float newConstructionBudget);
 };
+
 float Farm::sellSheep(float priceOfSheep)
 {
     float sheepSale = priceOfSheep * numSheep;
@@ -299,6 +301,7 @@ double Farm::harvestCrop(bool isCropMature, int numFarmHands, bool machinesFuele
     }
     return 0;
 }
+
 void Farm::constructNewBarn(bool needNewBarn, float newConstructionBudget)
 {
     if (needNewBarn)
@@ -340,7 +343,7 @@ struct CommercialAeroplane
 
 float CommercialAeroplane::Cockpit::increaseAirSpeed(float deltaV, float currentAirSpeed)
 {
-return deltaV + currentAirSpeed;
+    return deltaV + currentAirSpeed;
 }
 
 bool CommercialAeroplane::Cockpit::groundProximityWarningAlarm(bool nearGround, float proximityWarningThreshold)
@@ -355,6 +358,7 @@ bool CommercialAeroplane::Cockpit::groundProximityWarningAlarm(bool nearGround, 
     }
     return groundProximityalarmStateOn;
 }
+
 bool CommercialAeroplane::Cockpit::autopilotDisengagement(bool pilotAndCopilotChecklistComplete)
 {
     if (pilotAndCopilotChecklistComplete)
@@ -385,6 +389,7 @@ void CommercialAeroplane::transportPeople(int totalPassengers, int totalCrew)
 {
     std::cout << "Total number on board: " << totalPassengers + totalCrew << std::endl;
 }
+
 void CommercialAeroplane::provideInflightEntertainment(int passengerSeatNumber, std::string mediaSelction)
 {
     std::cout << "Passenger " << passengerSeatNumber << " selected " << mediaSelction << std::endl;
@@ -402,6 +407,7 @@ struct Player
     void score(bool hasBall, bool inScoringPosition);
     void train(std::string trainingRequired, float fitnessScore);
 };
+
 float Player::run(int howFast, float howFar, bool startWithLeftFoot)
 {
     float speed = 0;
@@ -458,6 +464,7 @@ void Coach::loseJob(int numberOfGamesInLosingStreak)
     }
 
 }
+
 void givePressConference(bool wonGame)
 {
     if (wonGame)
@@ -515,6 +522,7 @@ struct Medic
     void giveMassageTreatment(std::string player, std::string therapyTargetArea);
     float provideFitnessAssessmentScore(int restingBPM, int maxBPM, int bloodPressure);
 };
+
 void Medic::giveSteriodInjection(std::string player, std::string bodyPart, bool severePain)
 {
     if (severePain)
@@ -629,8 +637,8 @@ bool SportsTeam::winHomeGame(int goalsScoredFor, int goalsScoredAgainst)
 {
     if (goalsScoredFor > goalsScoredAgainst)
     {
-    std::cout << "We win home game" << std::endl;
-    return true;
+        std::cout << "We win home game" << std::endl;
+        return true;
     }
     return false;
 }
@@ -639,8 +647,8 @@ bool SportsTeam::winAwayGame(int goalsScoredFor, int goalsScoredAgainst)
 {
     if (goalsScoredFor > goalsScoredAgainst)
     {
-    std::cout << "We win away game" << std::endl;
-    return true;
+        std::cout << "We win away game" << std::endl;
+        return true;
     }
     return false;
 }
@@ -650,10 +658,10 @@ bool SportsTeam::winChampionship(int gamesPlayed, int gamesWon, int gamesLost, i
     if (gamesPlayed >= 38)
     {
         if (gamesWon > gamesLost && gamesDrawn < 19 && totalGoalsScoredFor > totalGoalsScoredAgainst)
-            {
-                std::cout << "We won the championship" << std::endl;
-                return true;
-            }
+        {
+            std::cout << "We won the championship" << std::endl;
+            return true;
+        }
     }    
     return false;
 }
