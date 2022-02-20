@@ -77,8 +77,9 @@ struct CoffeeShop
     int numChairs = 54;
     int numStaff = 7;
     int numToilets = 2;
-    double annualProfit = 45362.78;
+    float annualProfit = 45362.78f;
     float priceCoffee = 3.40f;
+    CoffeeShop();
 
     struct Employee
     {
@@ -87,6 +88,9 @@ struct CoffeeShop
         int employeeID = 12345;
         bool fullyTrained = false;
         float salary = 30000.00f;
+        float deliveryDistTravelled;
+        int deliveryNumCustomers;
+        Employee();
 
         void makeDeliveries(float distTravelled, int numCustomers);
         void takeHoliday(int startDate, int endDate);
@@ -95,25 +99,38 @@ struct CoffeeShop
 
     float hostLocalArtistOnWalls(float percenatgeCommissionAgreed, float totalArtSales, std::string name);
     float chargeCustomer(int numberOfCoffees, std::string customerName);
-    void trainStaff(Employee employee, std::string trainingRequired);
+    bool trainStaff(Employee employee, std::string trainingRequired);
 };
+
+CoffeeShop::CoffeeShop()
+{
+    std::cout << "\nCoffeeShop being constructed!" << std::endl;
+}
+
+CoffeeShop::Employee::Employee()
+{
+    std::cout << "\nEmployee being constructed!" << std::endl;
+}
 
 void CoffeeShop::Employee::makeDeliveries(float distTravelled, int numCustomers)
 {
     float aveDistancePerCustomer = distTravelled / numCustomers;
-    std::cout << aveDistancePerCustomer;
+    std::cout << "Number of kilometers per customer: " << aveDistancePerCustomer << " km" << std::endl;
+    deliveryDistTravelled = distTravelled;
+    deliveryNumCustomers = numCustomers;
 }
 
 void CoffeeShop::Employee::takeHoliday(int startDate, int endDate)
 {
     int numDaysHolidayTaken = endDate - startDate;
-    std::cout << "Days holiday taken by " << firstName << " " << lastName << numDaysHolidayTaken << std::endl;
+    std::cout << numDaysHolidayTaken << " days holiday taken by " << firstName << " " << lastName << std::endl;
 }
 
 bool CoffeeShop::Employee::deservesPromotion()
 {
     if (fullyTrained)
     {
+        std::cout << firstName << " " << lastName << " deserves a promotion!" << std::endl;
         salary += 1000;
         return true;
     }
@@ -123,21 +140,21 @@ bool CoffeeShop::Employee::deservesPromotion()
 float CoffeeShop::hostLocalArtistOnWalls(float percenatgeCommissionAgreed, float totalArtSales, std::string name)
 {
     float commissionTotal = percenatgeCommissionAgreed * totalArtSales;
-    std::cout << name << "commission total: " << commissionTotal << std::endl; 
+    std::cout << name << " commission total: £" << commissionTotal << std::endl; 
     return commissionTotal;
 }
 
 float CoffeeShop::chargeCustomer(int numberOfCoffees, std::string customerName)
 {
     float saleTotal = priceCoffee * numberOfCoffees;
-    std::cout << customerName << "paid" << saleTotal << std::endl;
+    std::cout << customerName << " paid £" << saleTotal << std::endl;
     return saleTotal;
 }
 
-void CoffeeShop::trainStaff(Employee employee, std::string trainingRequired)
+bool CoffeeShop::trainStaff(Employee employee, std::string trainingRequired)
 {
-    std::cout << employee.firstName << " " << employee.lastName << "has been trained on " << trainingRequired << std::endl;
-    employee.fullyTrained = true;
+    std::cout << employee.firstName << " " << employee.lastName << " has been trained on " << trainingRequired << std::endl;
+    return true;
 }
 
 struct School
@@ -147,17 +164,28 @@ struct School
     int numTeachers = 54;
     int numPupils = 1111;
     float aveGrade = 3.45f;
+    School();
 
     void trainTeachers(bool internalTraining, std::string trainingRequired);
     void produceStudentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays);
     void closeForHolidays(int howManyDaysClosed, std::string nameOfHoliday);
 };
 
+School::School()
+{
+   std::cout << "\nSchool being constructed!" << std::endl;
+}
+
 void School::trainTeachers(bool internalTraining, std::string trainingRequired)
 {
     if (internalTraining)
     {
-        std::cout << "Teachers trained on " << trainingRequired << std::endl;
+        std::cout << "Teachers internally trained on " << trainingRequired << std::endl;
+        --leagueTablePosition;
+    }
+    else
+    {
+                std::cout << "Teachers externally trained on " << trainingRequired << std::endl;
         --leagueTablePosition;
     }
     
@@ -165,7 +193,7 @@ void School::trainTeachers(bool internalTraining, std::string trainingRequired)
 
 void School::produceStudentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays)
 {
-    std::cout << "This years production of " << nameOfPlay << " was performed by " << numberOfStudentsInCast << ", it took " << rehearsalDays << "to perfect." << std::endl;
+    std::cout << "This years school production of " << nameOfPlay << " was performed by " << numberOfStudentsInCast << ",pupils, it took " << rehearsalDays << " days rehearsal to perfect." << std::endl;
 }
 
 struct Farm
@@ -174,17 +202,25 @@ struct Farm
     int numCows = 321;
     int numFarmers = 6;
     float annualProfit = 679000.78f;
+    float annualExpenses = 0;
     double cropYield = 76543.21;
     double farmLandAreaInHectare = 84.3;
-    
+    Farm();
+
     float sellSheep(float priceOfSheep);
     double harvestCrop(bool isCropMature, int numFarmHands, bool machinesFueled, double priceOfCrop);
     void constructNewBarn(bool needNewBarn, float newConstructionBudget);
 };
 
+Farm::Farm()
+{
+       std::cout << "\nFarm being constructed!" << std::endl;
+}
+
 float Farm::sellSheep(float priceOfSheep)
 {
     float sheepSale = priceOfSheep * numSheep;
+    std::cout << "The farm made £" << sheepSale << " from the sale of " << numSheep << " sheep!" << std::endl;
     return sheepSale;
 }
 
@@ -202,6 +238,7 @@ void Farm::constructNewBarn(bool needNewBarn, float newConstructionBudget)
 {
     if (needNewBarn)
     {
+        annualExpenses = newConstructionBudget;
         annualProfit -= newConstructionBudget;
     }
     
@@ -216,16 +253,19 @@ struct CommercialAeroplane
     float speedRequiredForTakeOff = 213.56f;
     double fuelTankCapacityInLitres = 238840.04;
     double flightRangeInKM = 14310.23;
+    CommercialAeroplane();
 
     struct Cockpit
     {
         float age = 1.35f;
         int numSeats = 5;
         int numWindows = 4;
+        float proximityWarningThreshold = 1200.00f;
         bool hasBlackBox = true;
         bool ElectronicFlightInstrumentSystem = true;
         bool groundProximityalarmStateOn;
         bool autoPilotLightOn = true;
+        Cockpit();
 
         float increaseAirSpeed(float deltaV, float currentAirSpeed);
         bool groundProximityWarningAlarm(bool nearGround, float proximityWarningThreshold);
@@ -237,16 +277,27 @@ struct CommercialAeroplane
     void provideInflightEntertainment(int passengerSeatNumber, std::string mediaSelction);  
 };
 
+CommercialAeroplane::CommercialAeroplane()
+{
+    std::cout << "\nCommercialAeroplane being constructed!" << std::endl;
+}
+
+CommercialAeroplane::Cockpit::Cockpit()
+{
+    std::cout << "\nCockpit being constructed!" << std::endl;
+}
+
 float CommercialAeroplane::Cockpit::increaseAirSpeed(float deltaV, float currentAirSpeed)
 {
     return deltaV + currentAirSpeed;
 }
 
-bool CommercialAeroplane::Cockpit::groundProximityWarningAlarm(bool nearGround, float proximityWarningThreshold)
+bool CommercialAeroplane::Cockpit::groundProximityWarningAlarm(bool nearGround, float distFromGround)
 {
-    if(nearGround == true && proximityWarningThreshold < 800)
+    if(nearGround == true && distFromGround < proximityWarningThreshold)
     {
         groundProximityalarmStateOn = true;
+        std::cout << "Warning! Pull Up! Warning! Pull Up!" << std::endl;
     }
     else
     {
@@ -260,10 +311,12 @@ bool CommercialAeroplane::Cockpit::autopilotDisengagement(bool pilotAndCopilotCh
     if (pilotAndCopilotChecklistComplete)
     {
         autoPilotLightOn = false;
+        std::cout << "Autopilot disengaged" << std::endl;
     }
     else
     {
         autoPilotLightOn = true;
+        std::cout << "Autopilot engaged" << std::endl;
     }
     return autoPilotLightOn;
 }
@@ -298,11 +351,17 @@ struct Player
     int numGamesPlayed = 104;
     float scoringAverage = 1.78f;
     std::string name = "Ronaldo";
+    Player();
 
     float run(int howFast, float howFar, bool startWithLeftFoot);
     void score(bool hasBall, bool inScoringPosition);
     void train(std::string trainingRequired, float fitnessScore);
 };
+
+Player::Player()
+{
+    std::cout << "\nPlayer being constructed!" << std::endl;
+}
 
 float Player::run(int howFast, float howFar, bool startWithLeftFoot)
 {
@@ -338,11 +397,17 @@ struct Coach
     int numTrophiesWon = 2;
     double salary = 8078900.99;
     bool inspiringn = false;
+    Coach();
 
     void deliverMotivationalSpeech(bool winningStreak);
     void loseJob(int numberOfGamesInLosingStreak);
     void givePressConference(bool wonGame);
 };
+
+Coach::Coach()
+{
+    std::cout << "\nCoach being constructed!" << std::endl;
+}
 
 void deliverMotivationalSpeech(bool winningStreak)
 {
@@ -377,11 +442,17 @@ struct Fan
     bool hasSeasonTicket = true;
     double distanceFromStadiumInKM = 345.78;
     bool fanclubMember = true;
+    Fan();
 
     void buyTicketToGame(float ticketPrice, std::string opponentTeam);
     void cheer(bool teamScoredGoal);
     void wearTeamColours(bool teamWinningStreak);
 };
+
+Fan::Fan()
+{
+    std::cout << "\nFan being constructed!" << std::endl;
+}
 
 void Fan::buyTicketToGame(float ticketPrice, std::string opponentTeam)
 {
@@ -413,11 +484,17 @@ struct Medic
     double salary = 178909.99;
     bool isExPlayer = true;
     bool hasITSkills = true;
+    Medic();
 
     void giveSteriodInjection(std::string player, std::string bodyPart, bool servePain);
     void giveMassageTreatment(std::string player, std::string therapyTargetArea);
     float provideFitnessAssessmentScore(int restingBPM, int maxBPM, int bloodPressure);
 };
+
+Medic::Medic()
+{
+    std::cout << "\nMedic being constructed!" << std::endl;
+}
 
 void Medic::giveSteriodInjection(std::string player, std::string bodyPart, bool severePain)
 {
@@ -488,11 +565,17 @@ struct Stadium
     int numToilets = 66;
     bool trainingPitch = true;
     double constructionCost = 1200500700.99;
+    Stadium();
 
     void hostHomeGame(std::string nameVisitingTeam);
     bool provideCovidVaccinationCentre(int numberOfUnvaccinated, float RNumber);
     void maintance(bool brokenToilet);
 };
+
+Stadium::Stadium()
+{
+    std::cout << "\nStadium being constructed!" << std::endl;
+}
 
 void Stadium::hostHomeGame(std::string nameVisitingTeam)
 {
@@ -523,11 +606,17 @@ struct SportsTeam
     Fan numberOneFan;
     Medic bestMedic;
     Stadium stadium;
+    SportsTeam();
 
     bool winHomeGame(int goalsScoredFor, int goalsScoredAgainst);
     bool winAwayGame(int goalsScoredFor, int goalsScoredAgainst);
     bool winChampionship(int gamesPlayed, int gamesWon, int gamesLost, int gamesDrawn, int totalGoalsScoredFor, int totalGoalsScoredAgainst);
 };
+
+SportsTeam::SportsTeam()
+{
+    std::cout << "\nSportsTeam being constructed!" << std::endl;
+}
 
 bool SportsTeam::winHomeGame(int goalsScoredFor, int goalsScoredAgainst)
 {
@@ -568,4 +657,45 @@ int main()
     Example::main();
     
     std::cout << "good to go!" << std::endl;
+
+    CoffeeShop coffeeShop;
+    coffeeShop.chargeCustomer(3, "Jennifer Aniston");
+    std::cout << "Each coffee cost £" << coffeeShop.priceCoffee << std::endl;
+
+    coffeeShop.annualProfit += coffeeShop.hostLocalArtistOnWalls(0.1f, 3214.51f, "Banksy");
+    std::cout << "This has added funds to the total annual profit, which is now £" << coffeeShop.annualProfit  << std::endl;
+
+    CoffeeShop::Employee employee;
+    employee.fullyTrained = coffeeShop.trainStaff(employee, "Milk frothing");
+    std::cout << "Is employee number: " << employee.employeeID << " " << employee.firstName << " " << employee.lastName << " fully trained? " << (employee.fullyTrained == 0 ? "No" : "Yes") << std::endl;
+
+    employee.deservesPromotion();
+
+    employee.takeHoliday(156, 167);
+
+    employee.makeDeliveries(13, 12);
+    std::cout << employee.firstName << " " << employee.lastName << " made deliveries to " << employee.deliveryNumCustomers << " customers over " << employee.deliveryDistTravelled << " km" << std::endl;
+
+    School school;
+    school.trainTeachers(false, "SEN");
+
+    school.produceStudentsChristmasPlay(44, "Peter Pan", 20);
+
+    Farm farm;
+    farm.sellSheep(12.11f);
+
+    std::cout << "The farm made income of £" << farm.harvestCrop(true, 4, true, 1.30) << " from this years harvest." << std::endl;
+   
+    farm.constructNewBarn(true, 12345.45f);
+    std::cout << "The farm has spent £" << farm.annualExpenses << " this year. It's remaining profit is £" << farm.annualProfit <<  "." << std::endl;
+
+    CommercialAeroplane commercialAeroplane;
+    commercialAeroplane.accelerateForTakeOff(278, true, true, true);
+    commercialAeroplane.provideInflightEntertainment(234, "Love Actually");
+    commercialAeroplane.transportPeople(156, 7);
+
+    CommercialAeroplane::Cockpit cockpit;
+    cockpit.autopilotDisengagement(true);
+    cockpit.groundProximityWarningAlarm(true, 200);
+    std::cout << "You are within " << cockpit.proximityWarningThreshold << " metres of the ground!" << std::endl;
 }
