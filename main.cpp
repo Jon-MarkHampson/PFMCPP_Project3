@@ -347,6 +347,8 @@ void CommercialAeroplane::provideInflightEntertainment(int passengerSeatNumber, 
 struct Player
 {
     float bodyMassKG = 101.34f;
+    float speed = 0.0f;
+float energyUsed = 0.0f;
     std::string sponsor = "Nike";
     int numGamesPlayed = 104;
     float scoringAverage = 1.78f;
@@ -365,9 +367,6 @@ Player::Player()
 
 float Player::run(int howFast, float howFar, bool startWithLeftFoot)
 {
-    float speed = 0;
-    float energyUsed = 0;
-
     if (startWithLeftFoot)
     {
         speed = howFar / howFast;
@@ -386,7 +385,7 @@ void Player::score(bool hasBall, bool inScoringPosition)
 
 void Player::train(std::string trainingRequired, float fitnessScore)
 {
-    std::cout << name << " completed " << trainingRequired << std::endl;
+    std::cout << name << " completed " << trainingRequired << " training"<< std::endl;
     fitnessScore += 1;
 }
 
@@ -396,7 +395,7 @@ struct Coach
     int yearsExperience = 4;
     int numTrophiesWon = 2;
     double salary = 8078900.99;
-    bool inspiringn = false;
+    bool inspiring = false;
     Coach();
 
     void deliverMotivationalSpeech(bool winningStreak);
@@ -409,11 +408,11 @@ Coach::Coach()
     std::cout << "\nCoach being constructed!" << std::endl;
 }
 
-void deliverMotivationalSpeech(bool winningStreak)
+void Coach::deliverMotivationalSpeech(bool winningStreak)
 {
     if (winningStreak == false)
     {
-        std::cout << "No one will deny me, no one will define me. And no one will tell me who and what I am and can be. Belief will change my world.";
+        std::cout << "No one will deny me, no one will define me. And no one will tell me who and what I am and can be. Belief will change my world." << std::endl;
     } 
 }
 
@@ -426,7 +425,7 @@ void Coach::loseJob(int numberOfGamesInLosingStreak)
 
 }
 
-void givePressConference(bool wonGame)
+void Coach::givePressConference(bool wonGame)
 {
     if (wonGame)
     {
@@ -456,14 +455,14 @@ Fan::Fan()
 
 void Fan::buyTicketToGame(float ticketPrice, std::string opponentTeam)
 {
-    std::cout << name << "purchased ticket to " << opponentTeam << ". Price: £" << ticketPrice << std::endl;
+    std::cout << name << " purchased ticket to " << opponentTeam << ". Price: £" << ticketPrice << std::endl;
 }
 
 void Fan::cheer(bool teamScoredGoal)
 {
     if (teamScoredGoal)
     {
-        std::cout << "Wooohooo, goal!";
+        std::cout << "Wooohooo, goal!"<< std::endl;
     }
 }
 
@@ -500,7 +499,7 @@ void Medic::giveSteriodInjection(std::string player, std::string bodyPart, bool 
 {
     if (severePain)
     {
-        std::cout << player << "received steriod injection to " << bodyPart << std::endl;
+        std::cout << player << " received steriod injection to " << bodyPart << std::endl;
     }
 
 }
@@ -586,8 +585,10 @@ bool Stadium::provideCovidVaccinationCentre(int numberOfUnvaccinated, float RNum
 {
     if (numberOfUnvaccinated > 10000 && RNumber > 1.5f)
     {
-        return true; 
+        std::cout << "Stadium is require to be vaccination centre" << std::endl;
+        return true;    
     }
+    std::cout << "Stadium is not require to be vaccination centre" << std::endl;
     return false;
 }
 
@@ -625,6 +626,7 @@ bool SportsTeam::winHomeGame(int goalsScoredFor, int goalsScoredAgainst)
         std::cout << "We win home game" << std::endl;
         return true;
     }
+    std::cout << "We lose home game" << std::endl;
     return false;
 }
 
@@ -635,6 +637,7 @@ bool SportsTeam::winAwayGame(int goalsScoredFor, int goalsScoredAgainst)
         std::cout << "We win away game" << std::endl;
         return true;
     }
+    std::cout << "We lose away game" << std::endl;
     return false;
 }
 
@@ -698,4 +701,37 @@ int main()
     cockpit.autopilotDisengagement(true);
     cockpit.groundProximityWarningAlarm(true, 200);
     std::cout << "You are within " << cockpit.proximityWarningThreshold << " metres of the ground!" << std::endl;
+    std::cout << "New airspeed is " << cockpit.increaseAirSpeed(122.1f, 345.f) << " mph" << std::endl;
+
+    Player player;
+    player.run(10, 100, true);
+    std::cout << "The player ran at " << player.speed << " m/s" << std::endl;
+    player.score(true, true);
+    player.train("strength", 3.2f);
+
+    Coach coach;
+    coach.deliverMotivationalSpeech(false);
+    coach.loseJob(8);
+    coach.givePressConference(true);
+
+    Fan fan;
+    fan.buyTicketToGame(32.45f, "Chelsea");
+    fan.cheer(true);
+    fan.wearTeamColours(true);
+
+    Medic medic;
+    medic.giveSteriodInjection("David Davidson", "knee", true);
+    medic.giveMassageTreatment("David Davidson", "shoulder");
+    std::cout << "Fitness assement score: " << medic.provideFitnessAssessmentScore(70, 180, 90) << std::endl;
+
+    Stadium stadium;
+    stadium.hostHomeGame("Chelsea");
+    stadium.provideCovidVaccinationCentre(20000, 1.7f);
+    stadium.maintance(true); 
+
+    SportsTeam sportsTeam;
+    sportsTeam.winHomeGame(3, 5);
+    sportsTeam.winAwayGame(5,3);
+    sportsTeam.winChampionship(38, 28, 10, 0, 56, 22);
+    
 }
