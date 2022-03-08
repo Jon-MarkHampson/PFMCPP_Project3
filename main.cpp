@@ -173,7 +173,7 @@ struct School
 
 School::School()
 {
-   std::cout << "\nSchool being constructed!" << std::endl;
+    std::cout << "\nSchool being constructed!" << std::endl;
 }
 
 void School::trainTeachers(bool internalTraining, std::string trainingRequired)
