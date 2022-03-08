@@ -348,7 +348,7 @@ struct Player
 {
     float bodyMassKG = 101.34f;
     float speed = 0.0f;
-float energyUsed = 0.0f;
+    float energyUsed = 0.0f;
     std::string sponsor = "Nike";
     int numGamesPlayed = 104;
     float scoringAverage = 1.78f;
