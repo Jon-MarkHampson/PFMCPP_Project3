@@ -43,17 +43,17 @@ int main()
 
 struct CoffeeShop
 {
-    int numChairs = 54;
-    int numStaff = 7;
-    int numToilets = 2;
-    float annualProfit = 45362.78f;
-    float priceCoffee = 3.40f;
+    int numChairs;
+    int numStaff;
+    int numToilets;
+    float annualProfit {45362.78f};
+    float priceCoffee {3.40f};
     CoffeeShop();
 
     struct Employee
     {
-        std::string firstName = "Magnus";
-        std::string lastName = "Magnusson";
+        std::string firstName {"Magnus"};
+        std::string lastName {"Magnusson"};
         int employeeID = 12345;
         bool fullyTrained = false;
         float salary = 30000.00f;
@@ -71,12 +71,12 @@ struct CoffeeShop
     bool trainStaff(Employee employee, std::string trainingRequired);
 };
 
-CoffeeShop::CoffeeShop()
+CoffeeShop::CoffeeShop() : numChairs(54), numStaff(7), numToilets(2)
 {
     std::cout << "\nCoffeeShop being constructed!" << std::endl;
 }
 
-CoffeeShop::Employee::Employee()
+CoffeeShop::Employee::Employee() : employeeID(12345), fullyTrained(false), salary(30000.00f), deliveryDistTravelled(0.f), deliveryNumCustomers(0)
 {
     std::cout << "\nEmployee being constructed!" << std::endl;
 }
@@ -84,7 +84,7 @@ CoffeeShop::Employee::Employee()
 void CoffeeShop::Employee::makeDeliveries(float distTravelled, int numCustomers)
 {
     float aveDistancePerCustomer = distTravelled / numCustomers;
-    std::cout << "Number of kilometers per customer: " << aveDistancePerCustomer << " km" << std::endl;
+    std::cout << "Employee number: " << employeeID << " made some deliveries. Number of kilometers per customer: " << aveDistancePerCustomer << " km" << std::endl;
     deliveryDistTravelled = distTravelled;
     deliveryNumCustomers = numCustomers;
 }
@@ -128,11 +128,11 @@ bool CoffeeShop::trainStaff(Employee employee, std::string trainingRequired)
 
 struct School
 {
-    int numClassrooms = 111;
-    int leagueTablePosition = 13;
-    int numTeachers = 54;
-    int numPupils = 1111;
-    float aveGrade = 3.45f;
+    int numClassrooms;
+    int leagueTablePosition;
+    int numTeachers;
+    int numPupils;
+    float aveGrade {3.45f};
     School();
 
     void trainTeachers(bool internalTraining, std::string trainingRequired);
@@ -140,13 +140,14 @@ struct School
     void closeForHolidays(int howManyDaysClosed, std::string nameOfHoliday);
 };
 
-School::School()
+School::School() : numClassrooms(111), leagueTablePosition(13), numTeachers(54), numPupils(1111)
 {
     std::cout << "\nSchool being constructed!" << std::endl;
 }
 
 void School::trainTeachers(bool internalTraining, std::string trainingRequired)
 {
+    std::cout << "Current league table positaion: " << leagueTablePosition << std::endl;
     if (internalTraining)
     {
         std::cout << "Teachers internally trained on " << trainingRequired << std::endl;
@@ -157,7 +158,7 @@ void School::trainTeachers(bool internalTraining, std::string trainingRequired)
                 std::cout << "Teachers externally trained on " << trainingRequired << std::endl;
         --leagueTablePosition;
     }
-    
+       std::cout << "New league table positaion: " << leagueTablePosition << std::endl;
 }
 
 void School::produceStudentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays)
@@ -167,13 +168,13 @@ void School::produceStudentsChristmasPlay(int numberOfStudentsInCast, std::strin
 
 struct Farm
 {
-    int numSheep = 1234;
-    int numCows = 321;
-    int numFarmers = 6;
-    float annualProfit = 679000.78f;
-    float annualExpenses = 0;
-    double cropYield = 76543.21;
-    double farmLandAreaInHectare = 84.3;
+    int numSheep {1234};
+    int numCows {321};
+    int numFarmers {6};
+    float annualProfit;
+    float annualExpenses;
+    double cropYield;
+    double farmLandAreaInHectare;
     Farm();
 
     float sellSheep(float priceOfSheep);
@@ -181,7 +182,7 @@ struct Farm
     void constructNewBarn(bool needNewBarn, float newConstructionBudget);
 };
 
-Farm::Farm()
+Farm::Farm() : annualProfit(679000.78f), annualExpenses(0), cropYield (76543.21), farmLandAreaInHectare (84.3)
 {
        std::cout << "\nFarm being constructed!" << std::endl;
 }
@@ -205,6 +206,7 @@ double Farm::harvestCrop(bool isCropMature, int numFarmHands, bool machinesFuele
 
 void Farm::constructNewBarn(bool needNewBarn, float newConstructionBudget)
 {
+    std::cout << "The farm has " << numSheep << " sheep, " << numCows << " cows, " << "and a crop yield of " << cropYield << "." << std::endl;
     if (needNewBarn)
     {
         annualExpenses = newConstructionBudget;
@@ -215,25 +217,25 @@ void Farm::constructNewBarn(bool needNewBarn, float newConstructionBudget)
 
 struct CommercialAeroplane
 {
-    bool landingGearDown;
-    int numEngines = 4;
-    int numSeats = 524;
-    float maxAirSpeedMPH = 576.43f;
-    float speedRequiredForTakeOff = 213.56f;
-    double fuelTankCapacityInLitres = 238840.04;
-    double flightRangeInKM = 14310.23;
+    bool landingGearDown {false};
+    int numEngines {4};
+    int numSeats {524};
+    float maxAirSpeedMPH {576.43f};
+    float speedRequiredForTakeOff {213.56f};
+    double fuelTankCapacityInLitres {238840.04};
+    double flightRangeInKM {14310.23};
     CommercialAeroplane();
 
     struct Cockpit
     {
-        float age = 1.35f;
-        int numSeats = 5;
-        int numWindows = 4;
-        float proximityWarningThreshold = 1200.00f;
-        bool hasBlackBox = true;
-        bool ElectronicFlightInstrumentSystem = true;
+        float age;
+        int numSeats;
+        int numWindows;
+        float proximityWarningThreshold;
+        bool hasBlackBox;
+        bool ElectronicFlightInstrumentSystem;
         bool groundProximityalarmStateOn;
-        bool autoPilotLightOn = true;
+        bool autoPilotLightOn;
         Cockpit();
 
         float increaseAirSpeed(float deltaV, float currentAirSpeed);
@@ -251,7 +253,7 @@ CommercialAeroplane::CommercialAeroplane()
     std::cout << "\nCommercialAeroplane being constructed!" << std::endl;
 }
 
-CommercialAeroplane::Cockpit::Cockpit()
+CommercialAeroplane::Cockpit::Cockpit() : age(1.35f), numSeats(5), numWindows(4), proximityWarningThreshold(1200.00f), hasBlackBox(true), ElectronicFlightInstrumentSystem(true), groundProximityalarmStateOn(false), autoPilotLightOn(true)
 {
     std::cout << "\nCockpit being constructed!" << std::endl;
 }
@@ -277,9 +279,11 @@ bool CommercialAeroplane::Cockpit::groundProximityWarningAlarm(bool nearGround, 
 
 bool CommercialAeroplane::Cockpit::autopilotDisengagement(bool pilotAndCopilotChecklistComplete)
 {
+    std::cout << "Autopilot currently engaged?: " << autoPilotLightOn << std::endl;
     if (pilotAndCopilotChecklistComplete)
     {
         autoPilotLightOn = false;
+        std::cout << "Pilot and copilot checklist complete" << std::endl;
         std::cout << "Autopilot disengaged" << std::endl;
     }
     else
@@ -315,13 +319,13 @@ void CommercialAeroplane::provideInflightEntertainment(int passengerSeatNumber, 
 
 struct Player
 {
-    float bodyMassKG = 101.34f;
-    float speed = 0.0f;
-    float energyUsed = 0.0f;
-    std::string sponsor = "Nike";
-    int numGamesPlayed = 104;
-    float scoringAverage = 1.78f;
-    std::string name = "Ronaldo";
+    float bodyMassKG {101.34f};
+    float speed {0.0f};
+    float energyUsed {0.0f};
+    std::string sponsor;
+    int numGamesPlayed;
+    float scoringAverage;
+    std::string name;
     Player();
 
     float run(int howFast, float howFar, bool startWithLeftFoot);
@@ -329,13 +333,14 @@ struct Player
     void train(std::string trainingRequired, float fitnessScore);
 };
 
-Player::Player()
+Player::Player() : sponsor("Nike"), numGamesPlayed(104), scoringAverage(1.78f), name("Ronaldo")
 {
     std::cout << "\nPlayer being constructed!" << std::endl;
 }
 
 float Player::run(int howFast, float howFar, bool startWithLeftFoot)
 {
+    std::cout << "This run was sponsored by " << sponsor << std::endl;
     if (startWithLeftFoot)
     {
         speed = howFar / howFast;
@@ -348,7 +353,7 @@ void Player::score(bool hasBall, bool inScoringPosition)
 {
     if (hasBall && inScoringPosition)
     {
-        std::cout << "Goal scored" << std::endl;
+        std::cout << name << " scored!" << std::endl;
     }
 }
 
@@ -360,11 +365,11 @@ void Player::train(std::string trainingRequired, float fitnessScore)
 
 struct Coach
 {
-    std::string name;
-    int yearsExperience = 4;
-    int numTrophiesWon = 2;
-    double salary = 8078900.99;
-    bool inspiring = false;
+    std::string name {"Roman Abramovich"};
+    int yearsExperience {4};
+    int numTrophiesWon;
+    double salary;
+    bool inspiring;
     Coach();
 
     void deliverMotivationalSpeech(bool winningStreak);
@@ -372,13 +377,14 @@ struct Coach
     void givePressConference(bool wonGame);
 };
 
-Coach::Coach()
+Coach::Coach() : numTrophiesWon(2), salary(8078900.99), inspiring(false)
 {
     std::cout << "\nCoach being constructed!" << std::endl;
 }
 
 void Coach::deliverMotivationalSpeech(bool winningStreak)
 {
+    std::cout << name << " winner of " << numTrophiesWon << " trophies, is about to give a speech:" <<std::endl;
     if (winningStreak == false)
     {
         std::cout << "No one will deny me, no one will define me. And no one will tell me who and what I am and can be. Belief will change my world." << std::endl;
@@ -405,11 +411,11 @@ void Coach::givePressConference(bool wonGame)
 
 struct Fan
 {
-    std::string name = "John Johnson";
+    std::string name;
     int age;
-    bool hasSeasonTicket = true;
-    double distanceFromStadiumInKM = 345.78;
-    bool fanclubMember = true;
+    bool hasSeasonTicket;
+    double distanceFromStadiumInKM {345.78};
+    bool fanclubMember {true};
     Fan();
 
     void buyTicketToGame(float ticketPrice, std::string opponentTeam);
@@ -417,14 +423,14 @@ struct Fan
     void wearTeamColours(bool teamWinningStreak);
 };
 
-Fan::Fan()
+Fan::Fan() : name("John Johnson"), age(34), hasSeasonTicket(true)
 {
     std::cout << "\nFan being constructed!" << std::endl;
 }
 
 void Fan::buyTicketToGame(float ticketPrice, std::string opponentTeam)
 {
-    std::cout << name << " purchased ticket to " << opponentTeam << ". Price: £" << ticketPrice << std::endl;
+    std::cout << name << " age " << age << " purchased ticket to " << opponentTeam << ". Price: £" << ticketPrice << std::endl;
 }
 
 void Fan::cheer(bool teamScoredGoal)
@@ -447,9 +453,9 @@ void Fan::wearTeamColours(bool teamWinningStreak)
 
 struct Medic
 {
-    std::string qualifications;
-    std::string name = "The FA Level 4 Emergency Medical Management in Football";
-    double salary = 178909.99;
+    std::string qualifications {"The FA Level 4 Emergency Medical Management in Football"};
+    std::string name {"Doctor Pepper"};
+    double salary {178909.99};
     bool isExPlayer = true;
     bool hasITSkills = true;
     Medic();
@@ -459,7 +465,7 @@ struct Medic
     float provideFitnessAssessmentScore(int restingBPM, int maxBPM, int bloodPressure);
 };
 
-Medic::Medic()
+Medic::Medic() : isExPlayer(true), hasITSkills(true)
 {
     std::cout << "\nMedic being constructed!" << std::endl;
 }
@@ -468,14 +474,14 @@ void Medic::giveSteriodInjection(std::string player, std::string bodyPart, bool 
 {
     if (severePain)
     {
-        std::cout << player << " received steriod injection to " << bodyPart << std::endl;
+        std::cout << player << " received steriod injection to " << bodyPart << " from " << name << std::endl;
     }
 
 }
 
 void Medic::giveMassageTreatment(std::string player, std::string therapyTargetArea)
 {
-    std::cout << player << " received massage treatment to " << therapyTargetArea << std::endl;
+    std::cout << player << " received massage treatment to " << therapyTargetArea << " from " << name << std::endl;
 }
 
 float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int bloodPressure)
@@ -528,11 +534,11 @@ float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int blood
 
 struct Stadium
 {
-    int numSeats = 62850;
-    float pitchAreaInSqMetres = 7123.89f;
-    int numToilets = 66;
-    bool trainingPitch = true;
-    double constructionCost = 1200500700.99;
+    int numSeats {62850};
+    int numToilets {66};
+    float pitchAreaInSqMetres;
+    bool trainingPitch;
+    double constructionCost;
     Stadium();
 
     void hostHomeGame(std::string nameVisitingTeam);
@@ -540,14 +546,14 @@ struct Stadium
     void maintance(bool brokenToilet);
 };
 
-Stadium::Stadium()
+Stadium::Stadium() : pitchAreaInSqMetres(7123.89f), trainingPitch(true), constructionCost(1200500700.99)
 {
     std::cout << "\nStadium being constructed!" << std::endl;
 }
 
 void Stadium::hostHomeGame(std::string nameVisitingTeam)
 {
-    std::cout << "Welcome " << nameVisitingTeam << std::endl;
+    std::cout << "Welcome " << nameVisitingTeam << " to our stadium. It cost £"<< constructionCost << " and has " << numSeats << " seats. "<<std::endl;
 }
 
 bool Stadium::provideCovidVaccinationCentre(int numberOfUnvaccinated, float RNumber)
@@ -571,7 +577,7 @@ void Stadium::maintance(bool brokenToilet)
 
 struct SportsTeam
 {
-    Player TeamCaptain;
+    Player teamCaptain;
     Coach coach;
     Fan numberOneFan;
     Medic bestMedic;
