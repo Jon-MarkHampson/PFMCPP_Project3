@@ -146,10 +146,10 @@ void CoffeeShop::Employee::takeOutTrash(int bagsOfTrash, int numBagsEmployeeCanC
 {
     int numOfTripsToDumpster = 0;
     for (int i = 0; i < bagsOfTrash/numBagsEmployeeCanCarry; ++i)
-        {
-            std::cout << firstName << " " << lastName << " took " << numBagsEmployeeCanCarry << " bags to the dumpster" << std::endl;
-            ++numOfTripsToDumpster;
-        }
+    {
+        std::cout << firstName << " " << lastName << " took " << numBagsEmployeeCanCarry << " bags to the dumpster" << std::endl;
+        ++numOfTripsToDumpster;
+    }
     if (bagsOfTrash%numBagsEmployeeCanCarry != 0)
     {
         std::cout << firstName << " " << lastName << " took " << bagsOfTrash%numBagsEmployeeCanCarry << " bags to the dumpster" << std::endl;
@@ -183,9 +183,9 @@ float CoffeeShop::addDailyTakingsToAnnualProfit(int numCoffeesSold, float totalF
 {
     float dailySalesTotal {0};
     for (int i = 0; i < numCoffeesSold; ++i)
-        {
-            dailySalesTotal += priceCoffee;
-        }
+    {
+        dailySalesTotal += priceCoffee;
+    }
     dailySalesTotal += totalFromAdditionalSales;
     annualSales += dailySalesTotal;
     std::cout << "Daily sales total is £" << dailySalesTotal << std::endl;
@@ -236,9 +236,9 @@ void School::produceStudentsChristmasPlay(int numberOfStudentsInCast, std::strin
 void School::cleanClassrooms(int numClassroomsNeedCleaning)
 {
     for (int i = 1; i < (numClassroomsNeedCleaning + 1); ++i)
-        {
-            std::cout << "Classroom " << i << " chairs are stacked on tables and the floor has been cleaned" << std::endl;
-        }
+    {
+        std::cout << "Classroom " << i << " chairs are stacked on tables and the floor has been cleaned" << std::endl;
+    }
 }
 
 struct Farm
@@ -293,10 +293,10 @@ void Farm::constructNewBarn(bool needNewBarn, float newConstructionBudget)
 void Farm::milkCows(int totalVolumeOfMilkNeeded, float volumeOfMilkAlreadyInTanks, float priceOfMilk)
 {
     while (volumeOfMilkAlreadyInTanks < totalVolumeOfMilkNeeded)
-        {
-            std::cout <<  "Milking in progress" << std::endl;
-            volumeOfMilkAlreadyInTanks += 10;
-        }
+    {
+        std::cout <<  "Milking in progress" << std::endl;
+        volumeOfMilkAlreadyInTanks += 10;
+    }
     std::cout << "Achieved total volume of milk needed: " << totalVolumeOfMilkNeeded << std::endl;
     std::cout << "Value of milk: £" << totalVolumeOfMilkNeeded * priceOfMilk << std::endl;
 }
@@ -385,9 +385,9 @@ bool CommercialAeroplane::Cockpit::autopilotDisengagement(bool pilotAndCopilotCh
 void CommercialAeroplane::Cockpit::increaseAltitude(float requireAltitude)
 {
     while (altitude < requireAltitude)
-        {
-            altitude += 100;
-        }
+    {
+        altitude += 100;
+    }
     std::cout << "New altitude of " << altitude << "ft achieved" << std::endl;
 }
 
@@ -408,9 +408,9 @@ void CommercialAeroplane::increaseGroundSpeed(float windSpeed)
 {
     float currentGroundSpeed {0.0f};
     while (currentGroundSpeed < speedRequiredForTakeOff - windSpeed)
-        {
-            currentGroundSpeed += 15;
-        }
+    {
+        currentGroundSpeed += 15;
+    }
     std::cout << "Speed for take off achieved... Take Off" << std::endl;
 }
 
@@ -475,9 +475,9 @@ void Player::loseWeight(float requiredNewBodyMassKg)
 {
     float oldBodyMassKG = bodyMassKG;
     while (bodyMassKG > requiredNewBodyMassKg)
-        {
-            bodyMassKG -= 0.5f;
-        }
+    {
+        bodyMassKG -= 0.5f;
+    }
     std::cout << name << " lost " << oldBodyMassKG - bodyMassKG << "kg" << std::endl;
     std::cout << "New body mass: " << bodyMassKG << "kg" << std::endl;
 }
@@ -534,9 +534,9 @@ void Coach::buyPlayers(int playerBudget, int costOfPlayer)
     int moneySpentOnPlayers {0};
     int numPlayersPurchased = playerBudget/costOfPlayer;
     for ( int i = 0; i < numPlayersPurchased; ++i)
-        {
-            moneySpentOnPlayers += costOfPlayer;
-        }
+    {
+        moneySpentOnPlayers += costOfPlayer;
+    }
     std::cout << "Money spent on players £" << moneySpentOnPlayers << std::endl;
     std::cout << "Number of players purchased :" << numPlayersPurchased << std::endl;
 }
@@ -681,10 +681,10 @@ float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int blood
 void Medic::orderMedicines(int numCurrentMedicines, int numRequiredMedicines)
 {
     while (numCurrentMedicines < numRequiredMedicines)
-        {
-            ++numCurrentMedicines;
-            std::cout << name << " has ordered more medicine" << std::endl;
-        }
+    {
+        ++numCurrentMedicines;
+        std::cout << name << " has ordered more medicine" << std::endl;
+    }
 }
 
 struct Stadium
@@ -736,10 +736,10 @@ void Stadium::mowPitch()
     float areaOfPitchMowed {0.0f};
     int mowingLengths {0};
     while (areaOfPitchMowed < pitchAreaInSqMetres)
-        {
-            areaOfPitchMowed += 25.4f;
-            ++mowingLengths;
-        }
+    {
+        areaOfPitchMowed += 25.4f;
+        ++mowingLengths;
+    }
     std::cout << "The pitch has now been fully mowed" << std::endl;
     std::cout << "It took " << mowingLengths << " lengths with the mower to complete" <<std::endl;
 }
@@ -802,9 +802,9 @@ bool SportsTeam::winChampionship(int gamesPlayed, int gamesWon, int gamesLost, i
 void SportsTeam::playLeaugeMatches(int numberOfMatachesPlayed, int numTotalLeaugueMatchesInYear)
 {
     while (numberOfMatachesPlayed < numTotalLeaugueMatchesInYear)
-        {
-            ++numberOfMatachesPlayed;
-        }
+    {
+        ++numberOfMatachesPlayed;
+    }
     std::cout << numTotalLeaugueMatchesInYear << " matches now played" << std::endl;
 }
 
