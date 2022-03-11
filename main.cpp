@@ -79,6 +79,7 @@ struct CoffeeShop
     int numStaff;
     int numToilets;
     float annualProfit {45362.78f};
+    float annualSales {345678.9f};
     float priceCoffee {3.40f};
     CoffeeShop();
 
@@ -96,11 +97,14 @@ struct CoffeeShop
         void makeDeliveries(float distTravelled, int numCustomers);
         void takeHoliday(int startDate, int endDate);
         bool deservesPromotion();
+        void takeOutTrash(int bagsOfTrash, int numBagsEmployeeCanCarry);
     };
 
     float hostLocalArtistOnWalls(float percenatgeCommissionAgreed, float totalArtSales, std::string name);
     float chargeCustomer(int numberOfCoffees, std::string customerName);
     bool trainStaff(Employee employee, std::string trainingRequired);
+    float addDailyTakingsToAnnualProfit(int numCoffeesSold, float totalFromAdditionalSales);
+
 };
 
 CoffeeShop::CoffeeShop() : numChairs(54), numStaff(7), numToilets(2)
@@ -138,6 +142,23 @@ bool CoffeeShop::Employee::deservesPromotion()
     return false;
 }
 
+void CoffeeShop::Employee::takeOutTrash(int bagsOfTrash, int numBagsEmployeeCanCarry)
+{
+    int numOfTripsToDumpster = 0;
+    for (int i = 0; i < bagsOfTrash/numBagsEmployeeCanCarry; ++i)
+        {
+            std::cout << firstName << " " << lastName << " took " << numBagsEmployeeCanCarry << " bags to the dumpster" << std::endl;
+            ++numOfTripsToDumpster;
+        }
+    if (bagsOfTrash%numBagsEmployeeCanCarry != 0)
+    {
+        std::cout << firstName << " " << lastName << " took " << bagsOfTrash%numBagsEmployeeCanCarry << " bags to the dumpster" << std::endl;
+        ++numOfTripsToDumpster;
+    }
+    std::cout << firstName << " " << lastName << " made a total of " << numOfTripsToDumpster << " trips to the dumpster" << std::endl;
+
+}
+
 float CoffeeShop::hostLocalArtistOnWalls(float percenatgeCommissionAgreed, float totalArtSales, std::string name)
 {
     float commissionTotal = percenatgeCommissionAgreed * totalArtSales;
@@ -158,6 +179,19 @@ bool CoffeeShop::trainStaff(Employee employee, std::string trainingRequired)
     return true;
 }
 
+float CoffeeShop::addDailyTakingsToAnnualProfit(int numCoffeesSold, float totalFromAdditionalSales)
+{
+    float dailySalesTotal {0};
+    for (int i = 0; i < numCoffeesSold; ++i)
+        {
+            dailySalesTotal += priceCoffee;
+        }
+    dailySalesTotal += totalFromAdditionalSales;
+    annualSales += dailySalesTotal;
+    std::cout << "Daily sales total is £" << dailySalesTotal << std::endl;
+    std::cout << "New annual sales total is £" << annualSales << std::endl;
+    return dailySalesTotal;
+}
 struct School
 {
     int numClassrooms;
@@ -170,6 +204,7 @@ struct School
     void trainTeachers(bool internalTraining, std::string trainingRequired);
     void produceStudentsChristmasPlay(int numberOfStudentsInCast, std::string nameOfPlay, int rehearsalDays);
     void closeForHolidays(int howManyDaysClosed, std::string nameOfHoliday);
+    void cleanClassrooms(int numClassroomsNeedCleaning);
 };
 
 School::School() : numClassrooms(111), leagueTablePosition(13), numTeachers(54), numPupils(1111)
@@ -198,6 +233,14 @@ void School::produceStudentsChristmasPlay(int numberOfStudentsInCast, std::strin
     std::cout << "This years school production of " << nameOfPlay << " was performed by " << numberOfStudentsInCast << ",pupils, it took " << rehearsalDays << " days rehearsal to perfect." << std::endl;
 }
 
+void School::cleanClassrooms(int numClassroomsNeedCleaning)
+{
+    for (int i = 1; i < (numClassroomsNeedCleaning + 1); ++i)
+        {
+            std::cout << "Classroom " << i << " chairs are stacked on tables and the floor has been cleaned" << std::endl;
+        }
+}
+
 struct Farm
 {
     int numSheep {1234};
@@ -212,6 +255,7 @@ struct Farm
     float sellSheep(float priceOfSheep);
     double harvestCrop(bool isCropMature, int numFarmHands, bool machinesFueled, double priceOfCrop);
     void constructNewBarn(bool needNewBarn, float newConstructionBudget);
+    void milkCows(int totalVolumeOfMilkNeeded, float volumeOfMilkAlreadyInTanks, float priceOfMilk);
 };
 
 Farm::Farm() : annualProfit(679000.78f), annualExpenses(0), cropYield (76543.21), farmLandAreaInHectare (84.3)
@@ -246,7 +290,16 @@ void Farm::constructNewBarn(bool needNewBarn, float newConstructionBudget)
     }
     
 }
-
+void Farm::milkCows(int totalVolumeOfMilkNeeded, float volumeOfMilkAlreadyInTanks, float priceOfMilk)
+{
+    while (volumeOfMilkAlreadyInTanks < totalVolumeOfMilkNeeded)
+        {
+            std::cout <<  "Milking in progress" << std::endl;
+            volumeOfMilkAlreadyInTanks += 10;
+        }
+    std::cout << "Achieved total volume of milk needed: " << totalVolumeOfMilkNeeded << std::endl;
+    std::cout << "Value of milk: £" << totalVolumeOfMilkNeeded * priceOfMilk << std::endl;
+}
 struct CommercialAeroplane
 {
     bool landingGearDown {false};
@@ -264,6 +317,7 @@ struct CommercialAeroplane
         int numSeats;
         int numWindows;
         float proximityWarningThreshold;
+        float altitude;
         bool hasBlackBox;
         bool ElectronicFlightInstrumentSystem;
         bool groundProximityalarmStateOn;
@@ -273,9 +327,11 @@ struct CommercialAeroplane
         float increaseAirSpeed(float deltaV, float currentAirSpeed);
         bool groundProximityWarningAlarm(bool nearGround, float proximityWarningThreshold);
         bool autopilotDisengagement(bool pilotAndCopilotChecklistComplete);
+        void increaseAltitude(float requireAltitude);
     };
 
     void accelerateForTakeOff(float groundSpeed, bool armDoorsAndCrossCheck, bool runWayClear, bool airspaceClear);
+    void increaseGroundSpeed(float windSpeed);
     void transportPeople(int totalPassengers, int totalCrew);
     void provideInflightEntertainment(int passengerSeatNumber, std::string mediaSelction);  
 };
@@ -285,7 +341,7 @@ CommercialAeroplane::CommercialAeroplane()
     std::cout << "\nCommercialAeroplane being constructed!" << std::endl;
 }
 
-CommercialAeroplane::Cockpit::Cockpit() : age(1.35f), numSeats(5), numWindows(4), proximityWarningThreshold(1200.00f), hasBlackBox(true), ElectronicFlightInstrumentSystem(true), groundProximityalarmStateOn(false), autoPilotLightOn(true)
+CommercialAeroplane::Cockpit::Cockpit() : age(1.35f), numSeats(5), numWindows(4), proximityWarningThreshold(1200.00f), altitude(10000.00f), hasBlackBox(true), ElectronicFlightInstrumentSystem(true), groundProximityalarmStateOn(false), autoPilotLightOn(true)
 {
     std::cout << "\nCockpit being constructed!" << std::endl;
 }
@@ -326,6 +382,15 @@ bool CommercialAeroplane::Cockpit::autopilotDisengagement(bool pilotAndCopilotCh
     return autoPilotLightOn;
 }
 
+void CommercialAeroplane::Cockpit::increaseAltitude(float requireAltitude)
+{
+    while (altitude < requireAltitude)
+        {
+            altitude += 100;
+        }
+    std::cout << "New altitude of " << altitude << "ft achieved" << std::endl;
+}
+
 void CommercialAeroplane::accelerateForTakeOff(float groundSpeed, bool armDoorsAndCrossCheck, bool runWayClear, bool airspaceClear)
 {
     if (runWayClear && armDoorsAndCrossCheck && airspaceClear)
@@ -337,6 +402,16 @@ void CommercialAeroplane::accelerateForTakeOff(float groundSpeed, bool armDoorsA
             landingGearDown = false;
         }
     }
+}
+
+void CommercialAeroplane::increaseGroundSpeed(float windSpeed)
+{
+    float currentGroundSpeed {0.0f};
+    while (currentGroundSpeed < speedRequiredForTakeOff - windSpeed)
+        {
+            currentGroundSpeed += 15;
+        }
+    std::cout << "Speed for take off achieved... Take Off" << std::endl;
 }
 
 void CommercialAeroplane::transportPeople(int totalPassengers, int totalCrew)
@@ -363,6 +438,7 @@ struct Player
     float run(int howFast, float howFar, bool startWithLeftFoot);
     void score(bool hasBall, bool inScoringPosition);
     void train(std::string trainingRequired, float fitnessScore);
+    void loseWeight(float requiredNewBodyMassKg);
 };
 
 Player::Player() : sponsor("Nike"), numGamesPlayed(104), scoringAverage(1.78f), name("Ronaldo")
@@ -395,6 +471,17 @@ void Player::train(std::string trainingRequired, float fitnessScore)
     fitnessScore += 1;
 }
 
+void Player::loseWeight(float requiredNewBodyMassKg)
+{
+    float oldBodyMassKG = bodyMassKG;
+    while (bodyMassKG > requiredNewBodyMassKg)
+        {
+            bodyMassKG -= 0.5f;
+        }
+    std::cout << name << " lost " << oldBodyMassKG - bodyMassKG << "kg" << std::endl;
+    std::cout << "New body mass: " << bodyMassKG << "kg" << std::endl;
+}
+
 struct Coach
 {
     std::string name {"Roman Abramovich"};
@@ -407,6 +494,7 @@ struct Coach
     void deliverMotivationalSpeech(bool winningStreak);
     void loseJob(int numberOfGamesInLosingStreak);
     void givePressConference(bool wonGame);
+    void buyPlayers(int playerBudget, int costOfPlayer);
 };
 
 Coach::Coach() : numTrophiesWon(2), salary(8078900.99), inspiring(false)
@@ -441,6 +529,18 @@ void Coach::givePressConference(bool wonGame)
 
 }
 
+void Coach::buyPlayers(int playerBudget, int costOfPlayer)
+{
+    int moneySpentOnPlayers {0};
+    int numPlayersPurchased = playerBudget/costOfPlayer;
+    for ( int i = 0; i < numPlayersPurchased; ++i)
+        {
+            moneySpentOnPlayers += costOfPlayer;
+        }
+    std::cout << "Money spent on players £" << moneySpentOnPlayers << std::endl;
+    std::cout << "Number of players purchased :" << numPlayersPurchased << std::endl;
+}
+    
 struct Fan
 {
     std::string name;
@@ -453,6 +553,7 @@ struct Fan
     void buyTicketToGame(float ticketPrice, std::string opponentTeam);
     void cheer(bool teamScoredGoal);
     void wearTeamColours(bool teamWinningStreak);
+    void getPlayersSignatures(int numCurrentSignatures, int numSignaturesRequired);
 };
 
 Fan::Fan() : name("John Johnson"), age(34), hasSeasonTicket(true)
@@ -483,6 +584,17 @@ void Fan::wearTeamColours(bool teamWinningStreak)
     }
 }
 
+void Fan::getPlayersSignatures(int numCurrentSignatures, int numSignaturesRequired)
+{
+    int oldNumSignatures = numCurrentSignatures;
+    while (numCurrentSignatures < numSignaturesRequired)
+    {
+        ++numCurrentSignatures;
+        std::cout << name << " has got another signature" << std::endl;
+    }
+    std::cout << name << " has got " << numSignaturesRequired - oldNumSignatures << " new players signatures" << std::endl;
+}
+
 struct Medic
 {
     std::string qualifications {"The FA Level 4 Emergency Medical Management in Football"};
@@ -495,7 +607,9 @@ struct Medic
     void giveSteriodInjection(std::string player, std::string bodyPart, bool servePain);
     void giveMassageTreatment(std::string player, std::string therapyTargetArea);
     float provideFitnessAssessmentScore(int restingBPM, int maxBPM, int bloodPressure);
+    void orderMedicines(int numCurrentMedicines, int numRequiredMedicines);
 };
+
 
 Medic::Medic() : isExPlayer(true), hasITSkills(true)
 {
@@ -564,6 +678,15 @@ float Medic::provideFitnessAssessmentScore(int restingBPM, int maxBPM, int blood
     return scoreRestingBPM + scoreMaxBPM + scoreBloodPressure;
 }
 
+void Medic::orderMedicines(int numCurrentMedicines, int numRequiredMedicines)
+{
+    while (numCurrentMedicines < numRequiredMedicines)
+        {
+            ++numCurrentMedicines;
+            std::cout << name << " has ordered more medicine" << std::endl;
+        }
+}
+
 struct Stadium
 {
     int numSeats {62850};
@@ -576,6 +699,7 @@ struct Stadium
     void hostHomeGame(std::string nameVisitingTeam);
     bool provideCovidVaccinationCentre(int numberOfUnvaccinated, float RNumber);
     void maintance(bool brokenToilet);
+    void mowPitch();
 };
 
 Stadium::Stadium() : pitchAreaInSqMetres(7123.89f), trainingPitch(true), constructionCost(1200500700.99)
@@ -607,6 +731,19 @@ void Stadium::maintance(bool brokenToilet)
     }
 }
 
+void Stadium::mowPitch()
+{
+    float areaOfPitchMowed {0.0f};
+    int mowingLengths {0};
+    while (areaOfPitchMowed < pitchAreaInSqMetres)
+        {
+            areaOfPitchMowed += 25.4f;
+            ++mowingLengths;
+        }
+    std::cout << "The pitch has now been fully mowed" << std::endl;
+    std::cout << "It took " << mowingLengths << " lengths with the mower to complete" <<std::endl;
+}
+
 struct SportsTeam
 {
     Player teamCaptain;
@@ -619,6 +756,7 @@ struct SportsTeam
     bool winHomeGame(int goalsScoredFor, int goalsScoredAgainst);
     bool winAwayGame(int goalsScoredFor, int goalsScoredAgainst);
     bool winChampionship(int gamesPlayed, int gamesWon, int gamesLost, int gamesDrawn, int totalGoalsScoredFor, int totalGoalsScoredAgainst);
+    void playLeaugeMatches(int numberOfMatachesPlayed, int numTotalLeaugueMAtchesInYear);
 };
 
 SportsTeam::SportsTeam()
@@ -661,6 +799,15 @@ bool SportsTeam::winChampionship(int gamesPlayed, int gamesWon, int gamesLost, i
     return false;
 }
 
+void SportsTeam::playLeaugeMatches(int numberOfMatachesPlayed, int numTotalLeaugueMatchesInYear)
+{
+    while (numberOfMatachesPlayed < numTotalLeaugueMatchesInYear)
+        {
+            ++numberOfMatachesPlayed;
+        }
+    std::cout << numTotalLeaugueMatchesInYear << " matches now played" << std::endl;
+}
+
 #include <iostream>
 int main()
 {
@@ -674,71 +821,79 @@ int main()
 
     coffeeShop.annualProfit += coffeeShop.hostLocalArtistOnWalls(0.1f, 3214.51f, "Banksy");
     std::cout << "This has added funds to the total annual profit, which is now £" << coffeeShop.annualProfit  << std::endl;
+    coffeeShop.addDailyTakingsToAnnualProfit(345, 789.99f);
 
     CoffeeShop::Employee employee;
     employee.fullyTrained = coffeeShop.trainStaff(employee, "Milk frothing");
     std::cout << "Is employee number: " << employee.employeeID << " " << employee.firstName << " " << employee.lastName << " fully trained? " << (employee.fullyTrained == 0 ? "No" : "Yes") << std::endl;
 
     employee.deservesPromotion();
-
     employee.takeHoliday(156, 167);
-
     employee.makeDeliveries(13, 12);
     std::cout << employee.firstName << " " << employee.lastName << " made deliveries to " << employee.deliveryNumCustomers << " customers over " << employee.deliveryDistTravelled << " km" << std::endl;
+    employee.takeOutTrash(11, 3);
 
     School school;
     school.trainTeachers(false, "SEN");
-
     school.produceStudentsChristmasPlay(44, "Peter Pan", 20);
+    school.cleanClassrooms(11);
 
     Farm farm;
     farm.sellSheep(12.11f);
 
-    std::cout << "The farm made income of £" << farm.harvestCrop(true, 4, true, 1.30) << " from this years harvest." << std::endl;
-   
+    std::cout << "The farm made income of £" << farm.harvestCrop(true, 4, true, 1.30) << " from this years harvest." << std::endl; 
     farm.constructNewBarn(true, 12345.45f);
     std::cout << "The farm has spent £" << farm.annualExpenses << " this year. It's remaining profit is £" << farm.annualProfit <<  "." << std::endl;
+    farm.milkCows(120.0f, 35.0f, 3.50f);
 
     CommercialAeroplane commercialAeroplane;
     commercialAeroplane.accelerateForTakeOff(278, true, true, true);
     commercialAeroplane.provideInflightEntertainment(234, "Love Actually");
     commercialAeroplane.transportPeople(156, 7);
+    commercialAeroplane.increaseGroundSpeed(26.8f);
 
     CommercialAeroplane::Cockpit cockpit;
     cockpit.autopilotDisengagement(true);
     cockpit.groundProximityWarningAlarm(true, 200);
     std::cout << "You are within " << cockpit.proximityWarningThreshold << " metres of the ground!" << std::endl;
     std::cout << "New airspeed is " << cockpit.increaseAirSpeed(122.1f, 345.f) << " mph" << std::endl;
-
+    cockpit.increaseAltitude(20000.0f);
+    
     Player player;
     player.run(10, 100, true);
     std::cout << "The player ran at " << player.speed << " m/s" << std::endl;
     player.score(true, true);
     player.train("strength", 3.2f);
+    player.loseWeight(90.5f);
 
     Coach coach;
     coach.deliverMotivationalSpeech(false);
     coach.loseJob(8);
     coach.givePressConference(true);
+    coach.buyPlayers(50000000.f, 12000000.f);
 
     Fan fan;
     fan.buyTicketToGame(32.45f, "Chelsea");
     fan.cheer(true);
     fan.wearTeamColours(true);
+    fan.getPlayersSignatures(4,13);
 
     Medic medic;
     medic.giveSteriodInjection("David Davidson", "knee", true);
     medic.giveMassageTreatment("David Davidson", "shoulder");
     std::cout << "Fitness assement score: " << medic.provideFitnessAssessmentScore(70, 180, 90) << std::endl;
+    medic.orderMedicines(33,40);
 
     Stadium stadium;
     stadium.hostHomeGame("Chelsea");
     stadium.provideCovidVaccinationCentre(20000, 1.7f);
-    stadium.maintance(true); 
+    stadium.maintance(true);
+    stadium.mowPitch();
 
     SportsTeam sportsTeam;
     sportsTeam.winHomeGame(3, 5);
     sportsTeam.winAwayGame(5,3);
     sportsTeam.winChampionship(38, 28, 10, 0, 56, 22);
+    sportsTeam.playLeaugeMatches(18, 32);
     
 }
